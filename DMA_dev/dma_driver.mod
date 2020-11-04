@@ -1,2 +1,2 @@
-/home/fu-cheng/Desktop/Linux_driver/DMA_dev/dma_driver.o
+/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.o
 

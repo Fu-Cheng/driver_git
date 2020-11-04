@@ -27,7 +27,6 @@ __used __section(__versions) = {
 	{ 0x728616e3, "module_layout" },
 	{ 0xedc03953, "iounmap" },
 	{ 0xfa37b305, "dma_free_attrs" },
-	{ 0xc1514a3b, "free_irq" },
 	{ 0x9045fab1, "class_destroy" },
 	{ 0x7dcea277, "device_destroy" },
 	{ 0x6bc3fbc0, "__unregister_chrdev" },
@@ -38,9 +37,10 @@ __used __section(__versions) = {
 	{ 0x92d5838e, "request_threaded_irq" },
 	{ 0xafdf3d00, "dma_alloc_attrs" },
 	{ 0x9d669763, "memcpy" },
-	{ 0xefd6cf06, "__aeabi_unwind_cpp_pr0" },
-	{ 0xc5850110, "printk" },
 	{ 0x822137e2, "arm_heavy_mb" },
+	{ 0xefd6cf06, "__aeabi_unwind_cpp_pr0" },
+	{ 0xc1514a3b, "free_irq" },
+	{ 0xc5850110, "printk" },
 };
 
 MODULE_INFO(depends, "");
