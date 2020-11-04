@@ -1,10 +1,8 @@
-cmd_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := arm-linux-gnueabihf-gcc -Wp,-MD,/home/fu-cheng/Desktop/driver_git/DMA_dev/.dma_driver.mod.o.d  -nostdinc -isystem /tools/Xilinx/Vitis/2020.1/gnu/aarch32/lin/gcc-arm-linux-gnueabi/x86_64-petalinux-linux/usr/bin/arm-xilinx-linux-gnueabi/../../lib/arm-xilinx-linux-gnueabi/gcc/arm-xilinx-linux-gnueabi/9.2.0/include -I/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include -I./arch/arm/include/generated -I/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include -I./include -I/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi -I./include/generated/uapi -include /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/kconfig.h -include /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mfpu=vfp -funwind-tables -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-address-of-packed-member -Os -Wno-maybe-uninitialized --param=allow-store-data-races=0 -Wframe-larger-than=1024 -fstack-protector-strong -Wno-unused-but-set-variable -Wimplicit-fallthrough -Wno-unused-const-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-stringop-truncation -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -fmacro-prefix-map=/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/= -Wno-packed-not-aligned  -DMODULE  -DKBUILD_BASENAME='"dma_driver.mod"' -DKBUILD_MODNAME='"dma_driver"' -c -o /home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o /home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.c
+cmd_/home/fu-cheng/Desktop/driver_git/HelloWorld/hello.o := arm-linux-gnueabihf-gcc -Wp,-MD,/home/fu-cheng/Desktop/driver_git/HelloWorld/.hello.o.d  -nostdinc -isystem /tools/Xilinx/Vitis/2020.1/gnu/aarch32/lin/gcc-arm-linux-gnueabi/x86_64-petalinux-linux/usr/bin/arm-xilinx-linux-gnueabi/../../lib/arm-xilinx-linux-gnueabi/gcc/arm-xilinx-linux-gnueabi/9.2.0/include -I/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include -I./arch/arm/include/generated -I/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include -I./include -I/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi -I./arch/arm/include/generated/uapi -I/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi -I./include/generated/uapi -include /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/kconfig.h -include /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/compiler_types.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Wno-format-security -std=gnu89 -fno-dwarf2-cfi-asm -fno-ipa-sra -mabi=aapcs-linux -mfpu=vfp -funwind-tables -marm -Wa,-mno-warn-deprecated -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-address-of-packed-member -Os -Wno-maybe-uninitialized --param=allow-store-data-races=0 -Wframe-larger-than=1024 -fstack-protector-strong -Wno-unused-but-set-variable -Wimplicit-fallthrough -Wno-unused-const-variable -fomit-frame-pointer -fno-var-tracking-assignments -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-stringop-truncation -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init -fmacro-prefix-map=/home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/= -Wno-packed-not-aligned  -DMODULE  -DKBUILD_BASENAME='"hello"' -DKBUILD_MODNAME='"hello"' -c -o /home/fu-cheng/Desktop/driver_git/HelloWorld/hello.o /home/fu-cheng/Desktop/driver_git/HelloWorld/hello.c
 
-source_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := /home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.c
+source_/home/fu-cheng/Desktop/driver_git/HelloWorld/hello.o := /home/fu-cheng/Desktop/driver_git/HelloWorld/hello.c
 
-deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
-    $(wildcard include/config/module/unload.h) \
-    $(wildcard include/config/retpoline.h) \
+deps_/home/fu-cheng/Desktop/driver_git/HelloWorld/hello.o := \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/kconfig.h \
     $(wildcard include/config/cpu/big/endian.h) \
     $(wildcard include/config/booger.h) \
@@ -16,54 +14,12 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
     $(wildcard include/config/cc/has/asm/inline.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/compiler_attributes.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/compiler-gcc.h \
+    $(wildcard include/config/retpoline.h) \
     $(wildcard include/config/arch/use/builtin/bswap.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/build-salt.h \
-    $(wildcard include/config/build/salt.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/elfnote.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/elf.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/elf.h \
-    $(wildcard include/config/mmu.h) \
-    $(wildcard include/config/vdso.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/auxvec.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi/asm/auxvec.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/hwcap.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi/asm/hwcap.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/vdso_datapage.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/page.h \
-    $(wildcard include/config/cpu/copy/v4wt.h) \
-    $(wildcard include/config/cpu/copy/v4wb.h) \
-    $(wildcard include/config/cpu/copy/feroceon.h) \
-    $(wildcard include/config/cpu/copy/fa.h) \
-    $(wildcard include/config/cpu/sa1100.h) \
-    $(wildcard include/config/cpu/xscale.h) \
-    $(wildcard include/config/cpu/xsc3.h) \
-    $(wildcard include/config/cpu/copy/v6.h) \
-    $(wildcard include/config/kuser/helpers.h) \
-    $(wildcard include/config/arm/lpae.h) \
-    $(wildcard include/config/have/arch/pfn/valid.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/glue.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/pgtable-2level-types.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi/asm/types.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/int-ll64.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/asm-generic/int-ll64.h \
-  arch/arm/include/generated/uapi/asm/bitsperlong.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/bitsperlong.h \
-    $(wildcard include/config/64bit.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/asm-generic/bitsperlong.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/memory.h \
-    $(wildcard include/config/need/mach/memory/h.h) \
-    $(wildcard include/config/page/offset.h) \
-    $(wildcard include/config/thumb2/kernel.h) \
-    $(wildcard include/config/highmem.h) \
-    $(wildcard include/config/smp.h) \
-    $(wildcard include/config/dram/base.h) \
-    $(wildcard include/config/dram/size.h) \
-    $(wildcard include/config/xip/kernel.h) \
-    $(wildcard include/config/have/tcm.h) \
-    $(wildcard include/config/arm/patch/phys/virt.h) \
-    $(wildcard include/config/phys/offset.h) \
-    $(wildcard include/config/xip/phys/addr.h) \
-    $(wildcard include/config/debug/virtual.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/init.h \
+    $(wildcard include/config/have/arch/prel32/relocations.h) \
+    $(wildcard include/config/strict/kernel/rwx.h) \
+    $(wildcard include/config/strict/module/rwx.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/compiler.h \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
@@ -71,6 +27,13 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
     $(wildcard include/config/kasan.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/compiler_types.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/types.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi/asm/types.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/int-ll64.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/asm-generic/int-ll64.h \
+  arch/arm/include/generated/uapi/asm/bitsperlong.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/bitsperlong.h \
+    $(wildcard include/config/64bit.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/asm-generic/bitsperlong.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/posix_types.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/stddef.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/stddef.h \
@@ -78,9 +41,12 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/asm-generic/posix_types.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/barrier.h \
     $(wildcard include/config/cpu/32v6k.h) \
+    $(wildcard include/config/thumb2/kernel.h) \
+    $(wildcard include/config/cpu/xsc3.h) \
     $(wildcard include/config/cpu/fa526.h) \
     $(wildcard include/config/arm/heavy/mb.h) \
     $(wildcard include/config/arm/dma/mem/bufferable.h) \
+    $(wildcard include/config/smp.h) \
     $(wildcard include/config/cpu/spectre.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/barrier.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/kasan-checks.h \
@@ -89,24 +55,53 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
     $(wildcard include/config/uid16.h) \
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/module.h \
+    $(wildcard include/config/modules.h) \
+    $(wildcard include/config/sysfs.h) \
+    $(wildcard include/config/modules/tree/lookup.h) \
+    $(wildcard include/config/livepatch.h) \
+    $(wildcard include/config/unused/symbols.h) \
+    $(wildcard include/config/module/sig.h) \
+    $(wildcard include/config/generic/bug.h) \
+    $(wildcard include/config/kallsyms.h) \
+    $(wildcard include/config/tracepoints.h) \
+    $(wildcard include/config/tree/srcu.h) \
+    $(wildcard include/config/bpf/events.h) \
+    $(wildcard include/config/jump/label.h) \
+    $(wildcard include/config/tracing.h) \
+    $(wildcard include/config/event/tracing.h) \
+    $(wildcard include/config/ftrace/mcount/record.h) \
+    $(wildcard include/config/module/unload.h) \
+    $(wildcard include/config/constructors.h) \
+    $(wildcard include/config/function/error/injection.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/list.h \
+    $(wildcard include/config/debug/list.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/poison.h \
+    $(wildcard include/config/illegal/pointer/value.h) \
+    $(wildcard include/config/page/poisoning/zero.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/const.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/const.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/sizes.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/memory_model.h \
-    $(wildcard include/config/flatmem.h) \
-    $(wildcard include/config/discontigmem.h) \
-    $(wildcard include/config/sparsemem/vmemmap.h) \
-    $(wildcard include/config/sparsemem.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/pfn.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/getorder.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/log2.h \
-    $(wildcard include/config/arch/has/ilog2/u32.h) \
-    $(wildcard include/config/arch/has/ilog2/u64.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/kernel.h \
+    $(wildcard include/config/preempt/voluntary.h) \
+    $(wildcard include/config/debug/atomic/sleep.h) \
+    $(wildcard include/config/mmu.h) \
+    $(wildcard include/config/prove/locking.h) \
+    $(wildcard include/config/arch/has/refcount.h) \
+    $(wildcard include/config/panic/timeout.h) \
+  /tools/Xilinx/Vitis/2020.1/gnu/aarch32/lin/gcc-arm-linux-gnueabi/x86_64-petalinux-linux/usr/lib/arm-xilinx-linux-gnueabi/gcc/arm-xilinx-linux-gnueabi/9.2.0/include/stdarg.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/limits.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/limits.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/linkage.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/stringify.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/export.h \
+    $(wildcard include/config/modversions.h) \
+    $(wildcard include/config/module/rel/crcs.h) \
+    $(wildcard include/config/trim/unused/ksyms.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/linkage.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/bitops.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/bits.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/bitops.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/irqflags.h \
-    $(wildcard include/config/prove/locking.h) \
     $(wildcard include/config/trace/irqflags.h) \
     $(wildcard include/config/irqsoff/tracer.h) \
     $(wildcard include/config/preempt/tracer.h) \
@@ -118,6 +113,8 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
     $(wildcard include/config/arm/thumb.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi/asm/ptrace.h \
     $(wildcard include/config/cpu/endian/be8.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/hwcap.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi/asm/hwcap.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/irqflags.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/bitops/non-atomic.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/bitops/builtin-__fls.h \
@@ -134,6 +131,7 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/atomic.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/atomic.h \
     $(wildcard include/config/generic/atomic64.h) \
+    $(wildcard include/config/arm/lpae.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/prefetch.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/processor.h \
     $(wildcard include/config/have/hw/breakpoint.h) \
@@ -145,6 +143,7 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
     $(wildcard include/config/arm/l1/cache/shift.h) \
     $(wildcard include/config/aeabi.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/cmpxchg.h \
+    $(wildcard include/config/cpu/sa1100.h) \
     $(wildcard include/config/cpu/sa110.h) \
     $(wildcard include/config/cpu/v6.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/cmpxchg-local.h \
@@ -162,49 +161,9 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi/asm/swab.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/byteorder/generic.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/bitops/ext2-atomic-setbit.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/user.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/elf.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/elf-em.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/module.h \
-    $(wildcard include/config/modules.h) \
-    $(wildcard include/config/sysfs.h) \
-    $(wildcard include/config/modules/tree/lookup.h) \
-    $(wildcard include/config/livepatch.h) \
-    $(wildcard include/config/unused/symbols.h) \
-    $(wildcard include/config/module/sig.h) \
-    $(wildcard include/config/generic/bug.h) \
-    $(wildcard include/config/kallsyms.h) \
-    $(wildcard include/config/tracepoints.h) \
-    $(wildcard include/config/tree/srcu.h) \
-    $(wildcard include/config/bpf/events.h) \
-    $(wildcard include/config/jump/label.h) \
-    $(wildcard include/config/tracing.h) \
-    $(wildcard include/config/event/tracing.h) \
-    $(wildcard include/config/ftrace/mcount/record.h) \
-    $(wildcard include/config/constructors.h) \
-    $(wildcard include/config/function/error/injection.h) \
-    $(wildcard include/config/strict/module/rwx.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/list.h \
-    $(wildcard include/config/debug/list.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/poison.h \
-    $(wildcard include/config/illegal/pointer/value.h) \
-    $(wildcard include/config/page/poisoning/zero.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/kernel.h \
-    $(wildcard include/config/preempt/voluntary.h) \
-    $(wildcard include/config/debug/atomic/sleep.h) \
-    $(wildcard include/config/arch/has/refcount.h) \
-    $(wildcard include/config/panic/timeout.h) \
-  /tools/Xilinx/Vitis/2020.1/gnu/aarch32/lin/gcc-arm-linux-gnueabi/x86_64-petalinux-linux/usr/lib/arm-xilinx-linux-gnueabi/gcc/arm-xilinx-linux-gnueabi/9.2.0/include/stdarg.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/limits.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/limits.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/linkage.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/stringify.h \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/export.h \
-    $(wildcard include/config/modversions.h) \
-    $(wildcard include/config/module/rel/crcs.h) \
-    $(wildcard include/config/have/arch/prel32/relocations.h) \
-    $(wildcard include/config/trim/unused/ksyms.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/linkage.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/log2.h \
+    $(wildcard include/config/arch/has/ilog2/u32.h) \
+    $(wildcard include/config/arch/has/ilog2/u64.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/printk.h \
     $(wildcard include/config/message/loglevel/default.h) \
     $(wildcard include/config/console/loglevel/default.h) \
@@ -213,8 +172,6 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
     $(wildcard include/config/printk/nmi.h) \
     $(wildcard include/config/printk.h) \
     $(wildcard include/config/dynamic/debug.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/init.h \
-    $(wildcard include/config/strict/kernel/rwx.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/kern_levels.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/cache.h \
     $(wildcard include/config/arch/has/cache/line/size.h) \
@@ -267,6 +224,37 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/page.h \
+    $(wildcard include/config/cpu/copy/v4wt.h) \
+    $(wildcard include/config/cpu/copy/v4wb.h) \
+    $(wildcard include/config/cpu/copy/feroceon.h) \
+    $(wildcard include/config/cpu/copy/fa.h) \
+    $(wildcard include/config/cpu/xscale.h) \
+    $(wildcard include/config/cpu/copy/v6.h) \
+    $(wildcard include/config/kuser/helpers.h) \
+    $(wildcard include/config/have/arch/pfn/valid.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/glue.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/pgtable-2level-types.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/memory.h \
+    $(wildcard include/config/need/mach/memory/h.h) \
+    $(wildcard include/config/page/offset.h) \
+    $(wildcard include/config/highmem.h) \
+    $(wildcard include/config/dram/base.h) \
+    $(wildcard include/config/dram/size.h) \
+    $(wildcard include/config/xip/kernel.h) \
+    $(wildcard include/config/have/tcm.h) \
+    $(wildcard include/config/arm/patch/phys/virt.h) \
+    $(wildcard include/config/phys/offset.h) \
+    $(wildcard include/config/xip/phys/addr.h) \
+    $(wildcard include/config/debug/virtual.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/sizes.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/memory_model.h \
+    $(wildcard include/config/flatmem.h) \
+    $(wildcard include/config/discontigmem.h) \
+    $(wildcard include/config/sparsemem/vmemmap.h) \
+    $(wildcard include/config/sparsemem.h) \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/pfn.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/getorder.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/bottom_half.h \
   arch/arm/include/generated/asm/mmiowb.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/asm-generic/mmiowb.h \
@@ -399,6 +387,8 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
     $(wildcard include/config/debug/per/cpu/maps.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/auxvec.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/auxvec.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/auxvec.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/uapi/asm/auxvec.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/rbtree.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/rcupdate.h \
     $(wildcard include/config/preempt/rcu.h) \
@@ -444,6 +434,7 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
     $(wildcard include/config/debug/objects/free.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/mmu.h \
     $(wildcard include/config/cpu/has/asid.h) \
+    $(wildcard include/config/vdso.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/page-flags.h \
     $(wildcard include/config/arch/uses/pg/uncached.h) \
     $(wildcard include/config/memory/failure.h) \
@@ -494,6 +485,12 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/sysctl.h \
     $(wildcard include/config/sysctl.h) \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/sysctl.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/elf.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/elf.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/vdso_datapage.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/arch/arm/include/asm/user.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/elf.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/elf-em.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/kobject.h \
     $(wildcard include/config/uevent/helper.h) \
     $(wildcard include/config/debug/kobject/release.h) \
@@ -527,9 +524,7 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o := \
     $(wildcard include/config/have/mod/arch/specific.h) \
     $(wildcard include/config/modules/use/elf/rel.h) \
     $(wildcard include/config/modules/use/elf/rela.h) \
-  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/vermagic.h \
-  include/generated/utsrelease.h \
 
-/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o: $(deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o)
+/home/fu-cheng/Desktop/driver_git/HelloWorld/hello.o: $(deps_/home/fu-cheng/Desktop/driver_git/HelloWorld/hello.o)
 
-$(deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.mod.o):
+$(deps_/home/fu-cheng/Desktop/driver_git/HelloWorld/hello.o):

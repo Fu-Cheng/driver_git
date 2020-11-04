@@ -5,7 +5,7 @@ PWD 		:= $(shell pwd)
 CROSS_COMPILE	?=arm-linux-gnueabihf-
 ARCH 		?=arm
 
-obj-m		:=dma_driver.o
+obj-m		:=hello.o
 all:
 	make -C $(KDIR) CROSS_COMPILE=$(CROSS_COMPILE) ARCH=$(ARCH) M=$(PWD) modules
 clean:
