@@ -1,1 +1,0 @@
-cmd_/home/fu-cheng/Desktop/Linux_driver/DMA_dev/dma_driver.mod := { echo  /home/fu-cheng/Desktop/Linux_driver/DMA_dev/dma_driver.o; echo; } > /home/fu-cheng/Desktop/Linux_driver/DMA_dev/dma_driver.mod
