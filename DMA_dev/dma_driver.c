@@ -87,7 +87,8 @@ static struct file_operations dma_lops={
 
 
 static int dma_init(void){
-	printk(KERN_ALERT "HELLO");
+	major=10;
+	printk(KERN_ALERT "HELLO=%d", major);
     major=register_chrdev(0,"dma_dev",&dma_lops);
     dma_class=class_create(THIS_MODULE,"dma_dev");
     device_create(dma_class, NULL, MKDEV(major,0), NULL, "dma_dev");
