@@ -66,7 +66,7 @@ static irqreturn_t dma_s2mm_irq(int irq,void *dev_id){
     printk("\nps read data from fifo is over! irq=%d\n",irq);
     return IRQ_HANDLED;
 }
-int major;
+
 
 static struct class *dma_class   = NULL;
 static int dma_init(void);
@@ -77,24 +77,29 @@ static int dma_close(struct inode *inode, struct file *file);
 static int dma_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos);
 static int dma_read(struct file *file, char __user *buf, size_t size, loff_t *ppos);
 
-static struct file_operations dma_lops={
-	//.owner 	=THIS_MODULE,
+static struct file_operations dma_fops={
 	.open  	=dma_open,
 	.release=dma_close,
 	.read  	=dma_read,
 	.write 	=dma_write,
 };
 
-
+static int Major;
 static int dma_init(void){
-    	major=register_chrdev(0,"dma_dev",&dma_lops);
+    	//major=register_chrdev(0,"dma_dev",&dma_lops);
+	int ret;
+	dev_t dev_no, dev;
+
+	ret=alloc_chrdev_region(&dev_no, 0, 1, "dma_dev");
 	
-	if (major <0){
-		printk(KERN_ALERT "Registering char device failed with %d\n", major);
-		return major;
+	if (ret <0){
+		printk(KERN_ALERT "Registering char device failed with %d\n", ret);
+		return ret;
 	}
-	else
-		printk(KERN_ALERT "HELLO=%d", major);
+	
+	Major=MAJOR(dev_no);
+	dev=MKDEV(Major, 0);
+	printk("The major number for your device is %d\n", Major);
 		
 	/*
     	dma_class=class_create(THIS_MODULE,"dma_dev");
@@ -116,7 +121,9 @@ static int dma_init(void){
 
 static void dma_exit(void)
 {
-    	unregister_chrdev(major,"dma_dev");
+    	//unregister_chrdev(major,"dma_dev");
+	unregister_chrdev_region(Major, 1);
+	printk(KERN_INFO "clean up dma");
     
     	//device_destroy(dma_class,MKDEV(major,0));
     	//class_destroy(dma_class);
