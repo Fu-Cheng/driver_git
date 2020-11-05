@@ -694,6 +694,7 @@ deps_/home/fu-cheng/Desktop/driver_git/DMA_dev/dma_driver.o := \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/projid.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/uapi/linux/quota.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/nfs_fs_i.h \
+  /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/cdev.h \
   /home/fu-cheng/Desktop/PetaLinux2020/project_driver/components/yocto/workspace/sources/linux-xlnx/include/linux/device.h \
     $(wildcard include/config/acpi.h) \
     $(wildcard include/config/debug/devres.h) \

@@ -1,6 +1,7 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/fs.h>
+#include <linux/cdev.h>
 #include <linux/device.h>
 #include <asm/io.h>
 #include <linux/init.h>
@@ -76,15 +77,15 @@ static int dma_open(struct inode *inode, struct file *file);
 static int dma_close(struct inode *inode, struct file *file);
 static int dma_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos);
 static int dma_read(struct file *file, char __user *buf, size_t size, loff_t *ppos);
-
 static struct file_operations dma_fops={
-	.open  	=dma_open,
-	.release=dma_close,
-	.read  	=dma_read,
-	.write 	=dma_write,
+	open:		dma_open,
+	release:	dma_close,
+	read:  		dma_read,
+	write: 		dma_write
 };
-
 static int Major;
+struct cdev *kernel_cdev;
+
 static int dma_init(void){
     	//major=register_chrdev(0,"dma_dev",&dma_lops);
 	int ret;
@@ -99,7 +100,17 @@ static int dma_init(void){
 	
 	Major=MAJOR(dev_no);
 	dev=MKDEV(Major, 0);
-	printk("The major number for your device is %d\n", Major);
+	printk(KERN_ALERT "The major number for your device is %d\n", Major);
+
+	kernel_cdev=cdev_alloc();
+	kernel_cdev->ops=&dma_fops;
+	kernel_cdev->owner=THIS_MODULE;
+	ret=cdev_add(kernel_cdev, dev, 1);
+	if (ret<0){
+		printk(KERN_ALERT "Unalbe to allocate cdev");
+		return ret;
+	}
+	
 		
 	/*
     	dma_class=class_create(THIS_MODULE,"dma_dev");
@@ -122,8 +133,9 @@ static int dma_init(void){
 static void dma_exit(void)
 {
     	//unregister_chrdev(major,"dma_dev");
+	cdev_del(kernel_cdev);
 	unregister_chrdev_region(Major, 1);
-	printk(KERN_INFO "clean up dma");
+	printk(KERN_ALERT "clean up dma");
     
     	//device_destroy(dma_class,MKDEV(major,0));
     	//class_destroy(dma_class);
