@@ -89,33 +89,36 @@ static struct file_operations dma_lops={
 static int dma_init(void){
 	major=10;
 	printk(KERN_ALERT "HELLO=%d", major);
-    major=register_chrdev(0,"dma_dev",&dma_lops);
-    dma_class=class_create(THIS_MODULE,"dma_dev");
-    device_create(dma_class, NULL, MKDEV(major,0), NULL, "dma_dev");
-    printk(KERN_ALERT "major dev number= %d", major);
+    	major=register_chrdev(0,"dma_dev",&dma_lops);
+	printk(KERN_ALERT "HELLO=%d", major);
+	/*
+    	dma_class=class_create(THIS_MODULE,"dma_dev");
+    	device_create(dma_class, NULL, MKDEV(major,0), NULL, "dma_dev");
+    	printk(KERN_ALERT "major dev number= %d", major);
+	
+    	mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
+    	mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
+    	mm2s_sa  =  ioremap(DMA_MM2S_ADDR+MM2S_SA,    4);
+    	mm2s_len =  ioremap(DMA_MM2S_ADDR+MM2S_LENGTH,4);
 
-    mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
-    mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
-    mm2s_sa  =  ioremap(DMA_MM2S_ADDR+MM2S_SA,    4);
-    mm2s_len =  ioremap(DMA_MM2S_ADDR+MM2S_LENGTH,4);
-
-    s2mm_cr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMACR, 4);
-    s2mm_sr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMASR, 4);
-    s2mm_da  =  ioremap(DMA_S2MM_ADDR+S2MM_DA,    4);
-    s2mm_len =  ioremap(DMA_S2MM_ADDR+S2MM_LENGTH,4);
-
-   return 0;
+    	s2mm_cr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMACR, 4);
+    	s2mm_sr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMASR, 4);
+    	s2mm_da  =  ioremap(DMA_S2MM_ADDR+S2MM_DA,    4);
+    	s2mm_len =  ioremap(DMA_S2MM_ADDR+S2MM_LENGTH,4);
+*/
+   	return 0;
 }
 
 static void dma_exit(void)
 {
-    unregister_chrdev(major,"dma_dev");
+    	unregister_chrdev(major,"dma_dev");
     
-    device_destroy(dma_class,MKDEV(major,0));
-    class_destroy(dma_class);
+    	//device_destroy(dma_class,MKDEV(major,0));
+    	//class_destroy(dma_class);
 
     //free_irq(dma_mm2s_irq, NULL);
     //free_irq(dma_s2mm_irq, NULL);
+	/*
     dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
 
     iounmap(mm2s_cr);
@@ -127,6 +130,7 @@ static void dma_exit(void)
     iounmap(s2mm_sr);
     iounmap(s2mm_da);
     iounmap(s2mm_len);
+*/	
 
 }
 
