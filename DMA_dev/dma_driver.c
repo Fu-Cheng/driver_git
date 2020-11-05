@@ -78,7 +78,7 @@ static int dma_write(struct file *file, const char __user *buf, size_t count, lo
 static int dma_read(struct file *file, char __user *buf, size_t size, loff_t *ppos);
 
 static struct file_operations dma_lops={
-	.owner 	=THIS_MODULE,
+	//.owner 	=THIS_MODULE,
 	.open  	=dma_open,
 	.release=dma_close,
 	.read  	=dma_read,
@@ -87,11 +87,15 @@ static struct file_operations dma_lops={
 
 
 static int dma_init(void){
-	major=10;
-	printk(KERN_ALERT "HELLO=%d", major);
     	major=register_chrdev(0,"dma_dev",&dma_lops);
-	while(major==0){};
-	printk(KERN_ALERT "HELLO=%d", major);
+	
+	if (major <0){
+		printk(KERN_ALERT "Registering char device failed with %d\n", major);
+		return major;
+	}
+	else
+		printk(KERN_ALERT "HELLO=%d", major);
+		
 	/*
     	dma_class=class_create(THIS_MODULE,"dma_dev");
     	device_create(dma_class, NULL, MKDEV(major,0), NULL, "dma_dev");
