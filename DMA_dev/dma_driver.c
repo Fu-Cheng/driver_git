@@ -112,10 +112,8 @@ static int dma_init(void){
 	}
 	
 		
-	/*
     	dma_class=class_create(THIS_MODULE,"dma_dev");
-    	device_create(dma_class, NULL, MKDEV(major,0), NULL, "dma_dev");
-    	printk(KERN_ALERT "major dev number= %d", major);
+    	device_create(dma_class, NULL, MKDEV(Major,0), NULL, "dma_dev");
 	
     	mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
     	mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
@@ -126,7 +124,7 @@ static int dma_init(void){
     	s2mm_sr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMASR, 4);
     	s2mm_da  =  ioremap(DMA_S2MM_ADDR+S2MM_DA,    4);
     	s2mm_len =  ioremap(DMA_S2MM_ADDR+S2MM_LENGTH,4);
-*/
+
    	return 0;
 }
 
@@ -135,26 +133,27 @@ static void dma_exit(void)
     	//unregister_chrdev(major,"dma_dev");
 	cdev_del(kernel_cdev);
 	unregister_chrdev_region(Major, 1);
-	printk(KERN_ALERT "clean up dma");
+	
     
-    	//device_destroy(dma_class,MKDEV(major,0));
-    	//class_destroy(dma_class);
+    	device_destroy(dma_class, MKDEV(Major,0));
+    	class_destroy(dma_class);
 
-    //free_irq(dma_mm2s_irq, NULL);
-    //free_irq(dma_s2mm_irq, NULL);
-	/*
-    dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
+    	//free_irq(dma_mm2s_irq, NULL);
+    	//free_irq(dma_s2mm_irq, NULL);
 
-    iounmap(mm2s_cr);
-    iounmap(mm2s_sr);
-    iounmap(mm2s_sa);
-    iounmap(mm2s_len);
+    	//dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
 
-    iounmap(s2mm_cr);
-    iounmap(s2mm_sr);
-    iounmap(s2mm_da);
-    iounmap(s2mm_len);
-*/	
+    	iounmap(mm2s_cr);
+    	iounmap(mm2s_sr);
+    	iounmap(mm2s_sa);
+    	iounmap(mm2s_len);
+
+    	iounmap(s2mm_cr);
+    	iounmap(s2mm_sr);
+    	iounmap(s2mm_da);
+    	iounmap(s2mm_len);
+
+	printk(KERN_ALERT "clean up dma");
 
 }
 
