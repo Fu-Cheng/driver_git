@@ -90,6 +90,7 @@ static int dma_init(void){
 	major=10;
 	printk(KERN_ALERT "HELLO=%d", major);
     	major=register_chrdev(0,"dma_dev",&dma_lops);
+	while(major==0){};
 	printk(KERN_ALERT "HELLO=%d", major);
 	/*
     	dma_class=class_create(THIS_MODULE,"dma_dev");
