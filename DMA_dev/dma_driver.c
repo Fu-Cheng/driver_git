@@ -87,6 +87,7 @@ static struct file_operations dma_lops={
 
 
 static int dma_init(void){
+	printk(KERN_ALERT "HELLO");
     major=register_chrdev(0,"dma_dev",&dma_lops);
     dma_class=class_create(THIS_MODULE,"dma_dev");
     device_create(dma_class, NULL, MKDEV(major,0), NULL, "dma_dev");
@@ -104,10 +105,7 @@ static int dma_init(void){
 
    return 0;
 }
-/*
- *退出 用于 module exit
- *
- * */
+
 static void dma_exit(void)
 {
     unregister_chrdev(major,"dma_dev");
