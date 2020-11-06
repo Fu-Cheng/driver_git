@@ -164,7 +164,9 @@ static int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
-    	axidma_addr = dma_alloc_coherent(kernel_cdev->dev, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
+	unsigned long phy_addr;
+	phy_addr=(unsigned long)ioremap(kernel_cdev->dev, sizeof(u32));
+    	axidma_addr = dma_alloc_coherent(phy_addr, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
     	//err = request_irq(62,dma_s2mm_irq,IRQF_TRIGGER_RISING, "dma_dev",NULL);
