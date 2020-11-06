@@ -54,11 +54,11 @@ volatile unsigned int  	*s2mm_len;
 
 #define DMA_LENGTH	524288
 
-//dma_addr_t	axidma_handle;
-//volatile unsigned int	*axidma_addr;
+dma_addr_t	axidma_handle;
+volatile unsigned int	*axidma_addr;
 
-u32 axidma_handle;
-u32 *axidma_addr;
+//u32 axidma_handle;
+//u32 *axidma_addr;
 
 static irqreturn_t dma_mm2s_irq(int irq,void *dev_id){
     printk("\nPs write data to fifo is over! irq=%d\n",irq);
@@ -164,7 +164,7 @@ static int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
-    	axidma_addr = dma_alloc_coherent(NULL, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
+    	axidma_addr = dma_alloc_coherent(kernel_cdev->dev, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
     	//err = request_irq(62,dma_s2mm_irq,IRQF_TRIGGER_RISING, "dma_dev",NULL);

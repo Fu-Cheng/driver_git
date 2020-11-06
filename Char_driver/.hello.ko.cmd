@@ -1,0 +1,1 @@
+cmd_/home/fu-cheng/Desktop/driver_git/Char_driver/hello.ko := ld -r -m elf_x86_64 -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/fu-cheng/Desktop/driver_git/Char_driver/hello.ko /home/fu-cheng/Desktop/driver_git/Char_driver/hello.o /home/fu-cheng/Desktop/driver_git/Char_driver/hello.mod.o ;  true
