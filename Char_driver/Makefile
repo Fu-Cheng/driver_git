@@ -1,26 +1,13 @@
 
 
-#KDIR = ~/Desktop/PetaLinux2020/test_driver/build/tmp/work/zynq_generic-xilinx-linux-gnueabi/linux-xlnx/5.4+git999-r0/linux-xlnx-5.4+git999/
-#PWD := $(shell pwd)
-#CC   = $(CROSS_COMPILE)arm-linux-gnueabihf-gcc
-#LD = $(CORSS_COMPILE)arm-linux-gnueabihf-ld
-#ARCH =arm
-#MAKE =make
-#obj-m:=hello.o
+KDIR	 	= ~/Desktop/PetaLinux2020/project_driver/build/tmp/work/zynq_generic-xilinx-linux-gnueabi/linux-xlnx/5.4+git999-r0/linux-xlnx-5.4+git999/
+PWD 		:= $(shell pwd)
+CROSS_COMPILE	?=arm-linux-gnueabihf-
+ARCH 		?=arm
 
-#all:
-#	$(MAKE) -C $(KDIR) ARCH=$(ARCH) M=$(PWD) modules
-#clean:
-#	make -C $(KDIR) ARCH=$(ARCH) M=$(PWD) clean
-
-
-
-KDIR =/usr/src/linux-headers-$(shell uname -r)/
-PWD := $(shell pwd)
-
-obj-m :=hello.o
-
+obj-m		:=dma_driver.o
 all:
-	make -C $(KDIR) M=$(PWD) modules
+	make -C $(KDIR) CROSS_COMPILE=$(CROSS_COMPILE) ARCH=$(ARCH) M=$(PWD) modules
 clean:
-	make -C $(KDIR) M=$(PWD) clean
+	make -C $(KDIR) ARCH=$(ARCH) M=$(PWD) clean
+

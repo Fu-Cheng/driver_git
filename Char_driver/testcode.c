@@ -15,7 +15,7 @@ int main(int argc , char ** argv)
 {
     int fd;
     int i=0;
-    fd = open("/dev/dma_dev",O_RDWR);
+    fd = open("/dev/dma_kernel",O_RDWR);
 /*
     if(fd<0) {printf("can not open file\n");while(1);}
     else printf("open file sucuss\n");
