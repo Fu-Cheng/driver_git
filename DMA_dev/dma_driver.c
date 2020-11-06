@@ -17,40 +17,40 @@
 #include <linux/dma-mapping.h>
 
 //DMA based address
-#define DMA_S2MM_ADDR	0X40400000
-#define DMA_MM2S_ADDR	0X40410000
+#define DMA_S2MM_ADDR	0x40400000
+#define DMA_MM2S_ADDR	0x40410000
 
 //DMA MM2S control register
 volatile unsigned int	*mm2s_cr;
-#define MM2S_DMACR	0X00000000
+#define MM2S_DMACR	0x00000000
 
 //DMA MM2S state register
 volatile unsigned int	*mm2s_sr;
-#define MM2S_DMASR	0X00000004
+#define MM2S_DMASR	0x00000004
 
 //DMA MM2S source address
 volatile unsigned int 	*mm2s_sa;
-#define MM2S_SA		0X00000018
+#define MM2S_SA		0x00000018
 
 //DMA MM2S length
 volatile unsigned int 	*mm2s_len;
-#define MM2S_LENGTH	0X00000028
+#define MM2S_LENGTH	0x00000028
 
 //DMA S2MM control register
 volatile unsigned int  	*s2mm_cr;
-#define S2MM_DMACR	0X00000030
+#define S2MM_DMACR	0x00000030
 
 //DMA S2MM state register
 volatile unsigned int  	*s2mm_sr;
-#define S2MM_DMASR	0X00000034
+#define S2MM_DMASR	0x00000034
 
 //DMA S2MM destination address
 volatile unsigned int  	*s2mm_da;
-#define S2MM_DA		0X00000048
+#define S2MM_DA		0x00000048
 
 //DMA S2MM length
 volatile unsigned int  	*s2mm_len;
-#define S2MM_LENGTH	0X00000058
+#define S2MM_LENGTH	0x00000058
 
 #define DMA_LENGTH	1024
 
@@ -108,7 +108,7 @@ static int dma_init(void){
 	kernel_cdev=cdev_alloc();
 	kernel_cdev->ops=&dma_fops;
 	kernel_cdev->owner=THIS_MODULE;
-	ret=cdev_add(kernel_cdev, dev, 1);
+	ret=cdev_add(kernel_cdev, dev_no, 1);
 	if (ret<0){
 		printk(KERN_ALERT "Unalbe to allocate cdev");
 		return ret;
