@@ -52,7 +52,7 @@ volatile unsigned int  	*s2mm_da;
 volatile unsigned int  	*s2mm_len;
 #define S2MM_LENGTH	0x00000058
 
-#define DMA_LENGTH	1024
+#define DMA_LENGTH	524288
 
 dma_addr_t	axidma_handle;
 volatile unsigned int	*axidma_addr;
@@ -118,15 +118,15 @@ static int dma_init(void){
     	dma_class=class_create(THIS_MODULE,"dma_dev");
     	device_create(dma_class, NULL, MKDEV(Major,0), NULL, "dma_dev");
 	
-    	mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
-    	mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
-    	mm2s_sa  =  ioremap(DMA_MM2S_ADDR+MM2S_SA,    4);
-    	mm2s_len =  ioremap(DMA_MM2S_ADDR+MM2S_LENGTH,4);
+    	//mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
+    	//mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
+    	//mm2s_sa  =  ioremap(DMA_MM2S_ADDR+MM2S_SA,    4);
+    	//mm2s_len =  ioremap(DMA_MM2S_ADDR+MM2S_LENGTH,4);
 
-    	s2mm_cr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMACR, 4);
-    	s2mm_sr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMASR, 4);
-    	s2mm_da  =  ioremap(DMA_S2MM_ADDR+S2MM_DA,    4);
-    	s2mm_len =  ioremap(DMA_S2MM_ADDR+S2MM_LENGTH,4);
+    	//s2mm_cr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMACR, 4);
+    	//s2mm_sr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMASR, 4);
+    	//s2mm_da  =  ioremap(DMA_S2MM_ADDR+S2MM_DA,    4);
+    	//s2mm_len =  ioremap(DMA_S2MM_ADDR+S2MM_LENGTH,4);
 
    	return 0;
 }
@@ -146,15 +146,15 @@ static void dma_exit(void)
 
     	//dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
 
-    	iounmap(mm2s_cr);
-    	iounmap(mm2s_sr);
-    	iounmap(mm2s_sa);
-    	iounmap(mm2s_len);
+    	//iounmap(mm2s_cr);
+    	//iounmap(mm2s_sr);
+    	//iounmap(mm2s_sa);
+    	//iounmap(mm2s_len);
 
-    	iounmap(s2mm_cr);
-    	iounmap(s2mm_sr);
-    	iounmap(s2mm_da);
-    	iounmap(s2mm_len);
+    	//iounmap(s2mm_cr);
+    	//iounmap(s2mm_sr);
+    	//iounmap(s2mm_da);
+    	//iounmap(s2mm_len);
 
 	printk(KERN_ALERT "clean up dma");
 
@@ -164,7 +164,7 @@ static int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
-    	axidma_addr = dma_alloc_coherent(kernel_cdev->dev, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
+    	axidma_addr = dma_alloc_coherent(NULL, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
     	//err = request_irq(62,dma_s2mm_irq,IRQF_TRIGGER_RISING, "dma_dev",NULL);
@@ -174,61 +174,19 @@ static int dma_open(struct inode *inode,struct file *file){
 
 static int dma_close(struct inode *inode, struct file *file){
 	printk("DMA close\n");
-    	free_irq(dma_mm2s_irq, NULL);
-    	free_irq(dma_s2mm_irq, NULL);
+    	//free_irq(dma_mm2s_irq, NULL);
+    	//free_irq(dma_s2mm_irq, NULL);
 	dma_free_coherent(NULL, DMA_LENGTH, axidma_addr, axidma_handle);
 }
 
-static int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppos)
-{
-    unsigned int mm2s_status = 0;
-    printk("dma write start !\n");
-    if(count>DMA_LENGTH)
-    {
-	printk("the number of data is too large!\n");
-	return 0;
-    }
-    memcpy(axidma_addr,buf,count);
-
-    iowrite32(0x00001001,mm2s_cr);
-    iowrite32(axidma_handle,mm2s_sa);
-    iowrite32(count,mm2s_len);
-
-    mm2s_status = ioread32(mm2s_sr);
-    while((mm2s_status&(1<<1))==0)
-    {
-        mm2s_status = ioread32(mm2s_sr);
-    }
-    printk("mm2s_status =0x%x\n",mm2s_status);
-    printk("dma write is over!\n");
-
-    return 0;
+static int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppos){
+	printk("dma write start !\n");
+    	return 0;
 }
 
-static int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos)
-{
-    unsigned int s2mm_status=0;
-    printk("dma read start!\n");
-    if(size>DMA_LENGTH)
-    {
-	printk("the number of data is not enough!\n");
-	return 1;
-    }
-
-    iowrite32(0x00001001,s2mm_cr);
-    iowrite32(axidma_handle,s2mm_da);
-    iowrite32(size,s2mm_len);
-    
-    s2mm_status=ioread32(s2mm_sr);
-    while((s2mm_status&(1<<1))==0)
-    {
-        s2mm_status=ioread32(s2mm_sr);
-    }
-    printk("s2mm_sr=0x%x\n",s2mm_status);
-    
-    memcpy(buf,axidma_addr,size);
-    printk("\ndma read is over!\n");
-    return 0;
+static int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
+    	printk("dma read start!\n");
+    	return 0;
 }
 
 module_init(dma_init);
