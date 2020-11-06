@@ -105,7 +105,7 @@ static int dma_init(void){
 	dev=MKDEV(Major, 0);
 	printk(KERN_ALERT "The major number for your device is %d\n", Major);
 
-	kernel_cdev=cdev_alloc();
+	//kernel_cdev=cdev_alloc();
 	kernel_cdev->ops=&dma_fops;
 	kernel_cdev->owner=THIS_MODULE;
 	ret=cdev_add(kernel_cdev, dev_no, 1);

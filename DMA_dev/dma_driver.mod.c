@@ -32,7 +32,6 @@ __used __section(__versions) = {
 	{ 0x32b91a6b, "device_create" },
 	{ 0xb265f046, "__class_create" },
 	{ 0x6308e738, "cdev_add" },
-	{ 0xcfd8862e, "cdev_alloc" },
 	{ 0xdecd0b29, "__stack_chk_fail" },
 	{ 0xe3ec2f2b, "alloc_chrdev_region" },
 	{ 0x8f678b07, "__stack_chk_guard" },
