@@ -164,7 +164,7 @@ static int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
-    	axidma_addr = dma_alloc_coherent(NULL, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
+    	axidma_addr = dma_alloc_coherent(kernel_cdev->dev, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
     	//err = request_irq(62,dma_s2mm_irq,IRQF_TRIGGER_RISING, "dma_dev",NULL);
@@ -176,7 +176,7 @@ static int dma_close(struct inode *inode, struct file *file){
 	printk("DMA close\n");
     	//free_irq(dma_mm2s_irq, NULL);
     	//free_irq(dma_s2mm_irq, NULL);
-	dma_free_coherent(NULL, DMA_LENGTH, axidma_addr, axidma_handle);
+	dma_free_coherent(kernel_cdev->dev, DMA_LENGTH, axidma_addr, axidma_handle);
 }
 
 static int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppos){
