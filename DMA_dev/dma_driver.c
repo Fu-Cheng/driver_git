@@ -89,11 +89,11 @@ static struct file_operations dma_fops={
 static int Major;
 struct cdev *kernel_cdev;
 struct device *kernel_device;
-
+dev_t dev_no, dev;
 static int dma_init(void){
     	//major=register_chrdev(0,"dma_dev",&dma_lops);
 	int ret;
-	dev_t dev_no, dev;
+	
 
 	ret=alloc_chrdev_region(&dev_no, 0, 1, "dma_dev");
 	
@@ -117,7 +117,7 @@ static int dma_init(void){
 	
 		
     	dma_class=class_create(THIS_MODULE,"dma_dev");
-    	device_create(dma_class, NULL, MKDEV(Major,0), NULL, "dma_dev");
+    	dev=device_create(dma_class, NULL, MKDEV(Major,0), NULL, "dma_dev");
 	
     	//mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
     	//mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
@@ -167,7 +167,7 @@ static int dma_open(struct inode *inode,struct file *file){
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
 	//phy_addr=ioremap(kernel_cdev->dev, 4);
 	//dma_set_mask (kernel_cdev->dev, 0xffffff);
-    	axidma_addr = dma_alloc_coherent(0xef0c3280, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
+    	axidma_addr = dma_alloc_coherent(dev, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
 	printk("AAAAAAA\n");
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
