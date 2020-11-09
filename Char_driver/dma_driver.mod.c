@@ -25,15 +25,14 @@ MODULE_INFO(retpoline, "Y");
 static const struct modversion_info ____versions[]
 __used __section(__versions) = {
 	{ 0x728616e3, "module_layout" },
-	{ 0x999e8297, "vfree" },
-	{ 0x37a0cba, "kfree" },
-	{ 0x4302d0eb, "free_pages" },
+	{ 0x709b606e, "device_unregister" },
+	{ 0xfa37b305, "dma_free_attrs" },
+	{ 0xe914e41e, "strcpy" },
+	{ 0xafdf3d00, "dma_alloc_attrs" },
+	{ 0x40133fe7, "device_register" },
+	{ 0x87be3af6, "dev_set_name" },
 	{ 0xefd6cf06, "__aeabi_unwind_cpp_pr0" },
-	{ 0x2dee2512, "kmalloc_caches" },
-	{ 0xd6ee688f, "vmalloc" },
-	{ 0x742737a4, "kmem_cache_alloc" },
 	{ 0xc5850110, "printk" },
-	{ 0x6a5cb5ee, "__get_free_pages" },
 };
 
 MODULE_INFO(depends, "");
