@@ -105,7 +105,7 @@ static int dma_init(void){
 	dev=MKDEV(Major, 0);
 	printk(KERN_ALERT "The major number for your device is %d\n", Major);
 
-	//kernel_cdev=cdev_alloc();
+	kernel_cdev=cdev_alloc();
 	kernel_cdev->ops=&dma_fops;
 	kernel_cdev->owner=THIS_MODULE;
 	ret=cdev_add(kernel_cdev, dev_no, 1);
@@ -164,8 +164,8 @@ static int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
-	unsigned long phy_addr;
-	phy_addr=(unsigned long)ioremap(kernel_cdev->dev, sizeof(u32));
+	unsigned int phy_addr;
+	phy_addr=ioremap(kernel_cdev->dev, 4);
     	axidma_addr = dma_alloc_coherent(phy_addr, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
