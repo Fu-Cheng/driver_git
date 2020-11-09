@@ -165,8 +165,8 @@ static int dma_open(struct inode *inode,struct file *file){
     	printk("DMA open\n");
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
 	//phy_addr=ioremap(kernel_cdev->dev, 4);
-	dma_set_mask (kernel_cdev->dev, 0xffffff);
-    	axidma_addr = dma_alloc_coherent(kernel_cdev->dev, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
+	//dma_set_mask (kernel_cdev->dev, 0xffffff);
+    	axidma_addr = dma_alloc_coherent(0xe0800000, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
 	printk("AAAAAAA\n");
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
