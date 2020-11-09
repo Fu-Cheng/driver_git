@@ -52,7 +52,7 @@ volatile unsigned int  	*s2mm_da;
 volatile unsigned int  	*s2mm_len;
 #define S2MM_LENGTH	0x00000058
 
-#define DMA_LENGTH	524288
+#define DMA_LENGTH	1024
 
 dma_addr_t	axidma_handle;
 volatile unsigned int	*axidma_addr;
