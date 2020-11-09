@@ -88,6 +88,7 @@ static struct file_operations dma_fops={
 };
 static int Major;
 struct cdev *kernel_cdev;
+struct device *kernel_device;
 
 static int dma_init(void){
     	//major=register_chrdev(0,"dma_dev",&dma_lops);
@@ -166,7 +167,7 @@ static int dma_open(struct inode *inode,struct file *file){
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
 	//phy_addr=ioremap(kernel_cdev->dev, 4);
 	//dma_set_mask (kernel_cdev->dev, 0xffffff);
-    	axidma_addr = dma_alloc_coherent(0xe0800000, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
+    	axidma_addr = dma_alloc_coherent(kernel_device->devt, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
 	printk("AAAAAAA\n");
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
@@ -179,7 +180,7 @@ static int dma_close(struct inode *inode, struct file *file){
 	printk("DMA close\n");
     	//free_irq(dma_mm2s_irq, NULL);
     	//free_irq(dma_s2mm_irq, NULL);
-	dma_free_coherent(kernel_cdev->dev, DMA_LENGTH, axidma_addr, axidma_handle);
+	dma_free_coherent(kernel_device->devt, DMA_LENGTH, axidma_addr, axidma_handle);
 }
 
 static int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppos){
