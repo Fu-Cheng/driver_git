@@ -37,7 +37,6 @@ __used __section(__versions) = {
 	{ 0xe3ec2f2b, "alloc_chrdev_region" },
 	{ 0x8f678b07, "__stack_chk_guard" },
 	{ 0xafdf3d00, "dma_alloc_attrs" },
-	{ 0xe97c4103, "ioremap" },
 	{ 0xfa37b305, "dma_free_attrs" },
 	{ 0xefd6cf06, "__aeabi_unwind_cpp_pr0" },
 	{ 0xc5850110, "printk" },
