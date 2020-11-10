@@ -176,16 +176,16 @@ static int dma_open(struct inode *inode,struct file *file){
 	//kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
-    	err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM1);
-    	printk("err=%d\n",err);
-    	err = request_irq(IRQ_NUM2, dma_s2mm_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM2);
-    	printk("err=%d\n",err);
+    	//err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM1);
+    	//printk("err=%d\n",err);
+    	//err = request_irq(IRQ_NUM2, dma_s2mm_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM2);
+    	//printk("err=%d\n",err);
     	return 0;
 }
 
 static int dma_close(struct inode *inode, struct file *file){
-    	free_irq(IRQ_NUM1, &IRQ_NUM1);
-    	free_irq(IRQ_NUM2, &IRQ_NUM2);
+    	//free_irq(IRQ_NUM1, &IRQ_NUM1);
+    	//free_irq(IRQ_NUM2, &IRQ_NUM2);
 	dma_free_coherent(kernel_device, DMA_LENGTH, axidma_addr, axidma_handle);
 	printk("DMA close\n");
 }
