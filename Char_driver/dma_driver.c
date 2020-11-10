@@ -1,70 +1,50 @@
-#include <linux/module.h>
 #include <linux/init.h>
-#include <linux/pci.h>
-#include <linux/slab.h>
-#include <linux/dma-mapping.h>
-#include <linux/dmapool.h>
-#include <linux/device.h>
+#include <linux/module.h>
+#include <linux/irq.h>
+#include <linux/io.h>
+#include <linux/irqdomain.h>
+#include <linux/interrupt.h>
+#include <linux/of.h>
+#include <linux/of_address.h>
 
-// int direction = PCI_DMA_TODEVICE ;
-// int direction = PCI_DMA_FROMDEVICE ;
-static int direction = PCI_DMA_BIDIRECTIONAL;
-//int direction = PCI_DMA_NONE;
+#include <asm/exception.h>
+#include <asm/mach/irq.h>
 
-static char *kbuf;
-static dma_addr_t handle;
-static size_t size = (10 * PAGE_SIZE);
-static struct dma_pool *mypool;
-static size_t pool_size = 1024;
-static size_t pool_align = 8;
-
-static void my_release(struct device *dev)
+void int068_interrupt(int irq, void *dev_id, struct pt_regs *regs)
 {
-    pr_info("releasing DMA device\n");
+    printk("Interrupt should be handled there\n");
 }
 
-static struct device dev = {
-    .release = my_release
-};
-
-static void output(char *kbuf, dma_addr_t handle, size_t size, char *string)
+static int __init clcdint_init(void)
 {
-    unsigned long diff;
-    diff = (unsigned long)kbuf - handle;
-    pr_info("kbuf=%12p, handle=%12p, size = %d\n", kbuf,
-        (unsigned long *)handle, (int)size);
-    pr_info("(kbuf-handle)= %12p, %12lu, PAGE_OFFSET=%12lu, compare=%lu\n",
-        (void *)diff, diff, PAGE_OFFSET, diff - PAGE_OFFSET);
-    strcpy(kbuf, string);
-    pr_info("string written was, %s\n", kbuf);
-}
+    unsigned int irq;
+    unsigned int irqflags;
+    int ret;
 
-static int __init my_init(void)
-{
-    dev_set_name(&dev, "my0");
-    device_register(&dev);
+    irq=68;
+    irqflags=IRQF_SHARED | IRQF_NO_SUSPEND;
 
-    /* dma_alloc_coherent method */
+    ret = request_irq(irq, int068_interrupt,
+            irqflags, "clcdint-int068", NULL);
 
-    pr_info("Loading DMA allocation test module\n");
-    pr_info("\nTesting dma_alloc_coherent()..........\n\n");
-    kbuf = dma_alloc_coherent(NULL, size, &handle, GFP_KERNEL);
-    output(kbuf, handle, size, "This is the dma_alloc_coherent() string");
+    if (ret!=0) {
+            printk("ERROR: Cannot request IRQ %d", irq);
+            printk(" - code %d , EIO %d , EINVAL %d\n", ret, EIO, EINVAL);
+    }
 
-    dma_free_coherent(NULL, size, kbuf, handle);
-    device_unregister(&dev);
-
+    printk("CLCDINT_INIT\n");
     return 0;
 }
 
-static void __exit my_exit(void)
+module_init(clcdint_init);
+
+static void __exit
+clcdint_exit(void)
 {
-    pr_info("Module Unloading\n");
+    unsigned int irq;
+    irq=68;
+    free_irq(irq, NULL);
+    printk("CLCDINT_EXIT\n");
 }
 
-module_init(my_init);
-module_exit(my_exit);
-
-MODULE_AUTHOR("Jerry Cooperstein");
-MODULE_DESCRIPTION("LDD:2.0 s_23/lab1_dma.c");
-MODULE_LICENSE("GPL v2");
+module_exit(clcdint_exit);
