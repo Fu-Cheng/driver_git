@@ -25,6 +25,7 @@ MODULE_INFO(retpoline, "Y");
 static const struct modversion_info ____versions[]
 __used __section(__versions) = {
 	{ 0x728616e3, "module_layout" },
+	{ 0xfa37b305, "dma_free_attrs" },
 	{ 0x9045fab1, "class_destroy" },
 	{ 0x7dcea277, "device_destroy" },
 	{ 0x6bc3fbc0, "__unregister_chrdev" },

@@ -139,28 +139,14 @@ static int dma_init(void){
 
 static void dma_exit(void)
 {
-    	unregister_chrdev(major,"dma_dev");
-	//cdev_del(kernel_cdev);
-	//unregister_chrdev_region(Major, 1);
-	
+	unregister_chrdev(major,"dma_dev");
     
-    	device_destroy(dma_class, MKDEV(Major,0));
+    	device_destroy(dma_class,MKDEV(major,0));
     	class_destroy(dma_class);
 
-    	//free_irq(dma_mm2s_irq, NULL);
-    	//free_irq(dma_s2mm_irq, NULL);
 
-    	//dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
 
-    	//iounmap(mm2s_cr);
-    	//iounmap(mm2s_sr);
-    	//iounmap(mm2s_sa);
-    	//iounmap(mm2s_len);
-
-    	//iounmap(s2mm_cr);
-    	//iounmap(s2mm_sr);
-    	//iounmap(s2mm_da);
-    	//iounmap(s2mm_len);
+    	dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
 
 	printk(KERN_ALERT "clean up dma");
 
