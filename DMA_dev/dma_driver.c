@@ -163,6 +163,15 @@ static void dma_exit(void)
 
 }
 
+const int IRQ_NUM = 17;
+void *irq_dev_id = (void *)&IRQ_NUM;
+irqreturn_t sample_isr(int irq, void *dev_instance) {
+	if (printk_ratelimit()) {
+		printk("%s: irq %d dev_instance %p\n", __func__, irq, dev_instance);
+	}
+	return IRQ_NONE;
+}
+
 static int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
@@ -170,10 +179,11 @@ static int dma_open(struct inode *inode,struct file *file){
 	//kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
-    	err = request_irq(61, dma_mm2s_irq, 0, "dma_dev", NULL);
-    	printk("err=%d\n",err);
-    	err = request_irq(62, dma_s2mm_irq, IRQF_TRIGGER_RISING, "dma_dev", NULL);
-    	printk("err=%d\n",err);
+    	err = request_irq(IRQ_NUM, sample_isr, IRQF_SHARED, "dma_dev", irq_dev_id);
+  	if (err) {
+		printk("request_irq() failed (%d)\n", err);
+		return (err);
+	}
     	return 0;
 }
 
