@@ -163,10 +163,10 @@ static void dma_exit(void)
 
 }
 
-//const int IRQ_NUM1 	=49;
-//const int IRQ_NUM2	=48;
-const int IRQ_NUM1 	=60;
-const int IRQ_NUM2	=61;
+const int IRQ_NUM1 	=49;
+const int IRQ_NUM2	=48;
+//const int IRQ_NUM1 	=60;
+//const int IRQ_NUM2	=61;
 //void *irq_dev_id = (void *)&IRQ_NUM;
 
 static int dma_open(struct inode *inode,struct file *file){
@@ -184,8 +184,8 @@ static int dma_open(struct inode *inode,struct file *file){
 }
 
 static int dma_close(struct inode *inode, struct file *file){
-    	free_irq(dma_mm2s_irq, &IRQ_NUM1);
-    	free_irq(dma_s2mm_irq, &IRQ_NUM2);
+    	free_irq(IRQ_NUM1, &IRQ_NUM1);
+    	free_irq(IRQ_NUM2, &IRQ_NUM2);
 	dma_free_coherent(kernel_device, DMA_LENGTH, axidma_addr, axidma_handle);
 	printk("DMA close\n");
 }
