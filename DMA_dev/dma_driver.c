@@ -121,9 +121,9 @@ static int dma_init(void){
 
 	major=register_chrdev(0,"dma_dev",&dma_fops);
     	dma_class= class_create(THIS_MODULE,"dma_dev");
-    	kernel_device=device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
+    	device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
     	printk(KERN_ALERT "major dev number= %d",major);
-	
+	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
     	//mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
     	//mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
     	//mm2s_sa  =  ioremap(DMA_MM2S_ADDR+MM2S_SA,    4);
@@ -175,10 +175,10 @@ static int dma_open(struct inode *inode,struct file *file){
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
 	//phy_addr=ioremap(kernel_cdev->dev, 4);
 	//dma_set_mask (kernel_cdev->dev, 0xfffff);
-	static const u64 dmamask = DMA_BIT_MASK(32);
-	kernel_device->dma_mask=(u64 *)&dmamask;
-	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
-    	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
+	//static const u64 dmamask = DMA_BIT_MASK(32);
+	//kernel_device->dma_mask=(u64 *)&dmamask;
+	//kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
+    	//axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
 	printk("AAAAAAA\n");
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
