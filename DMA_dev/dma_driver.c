@@ -139,9 +139,9 @@ static int dma_init(void){
 
 static void dma_exit(void)
 {
-    	//unregister_chrdev(major,"dma_dev");
+    	unregister_chrdev(major,"dma_dev");
 	//cdev_del(kernel_cdev);
-	unregister_chrdev_region(Major, 1);
+	//unregister_chrdev_region(Major, 1);
 	
     
     	device_destroy(dma_class, MKDEV(Major,0));
