@@ -31,11 +31,7 @@ __used __section(__versions) = {
 	{ 0xe6ea4192, "cdev_del" },
 	{ 0x32b91a6b, "device_create" },
 	{ 0xb265f046, "__class_create" },
-	{ 0x6308e738, "cdev_add" },
-	{ 0xcfd8862e, "cdev_alloc" },
-	{ 0xe3ec2f2b, "alloc_chrdev_region" },
-	{ 0xafdf3d00, "dma_alloc_attrs" },
-	{ 0xfa37b305, "dma_free_attrs" },
+	{ 0x6a85cde6, "__register_chrdev" },
 	{ 0xefd6cf06, "__aeabi_unwind_cpp_pr0" },
 	{ 0xc5850110, "printk" },
 };
