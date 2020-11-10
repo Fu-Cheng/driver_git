@@ -25,6 +25,7 @@ MODULE_INFO(retpoline, "Y");
 static const struct modversion_info ____versions[]
 __used __section(__versions) = {
 	{ 0x728616e3, "module_layout" },
+	{ 0x6128b5fc, "__printk_ratelimit" },
 	{ 0xedc03953, "iounmap" },
 	{ 0x9045fab1, "class_destroy" },
 	{ 0x7dcea277, "device_destroy" },
@@ -37,7 +38,6 @@ __used __section(__versions) = {
 	{ 0xafdf3d00, "dma_alloc_attrs" },
 	{ 0xfa37b305, "dma_free_attrs" },
 	{ 0xc1514a3b, "free_irq" },
-	{ 0x6128b5fc, "__printk_ratelimit" },
 	{ 0xefd6cf06, "__aeabi_unwind_cpp_pr0" },
 	{ 0xc5850110, "printk" },
 };
