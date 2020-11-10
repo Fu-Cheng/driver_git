@@ -54,17 +54,13 @@ volatile unsigned int  	*s2mm_len;
 
 #define DMA_LENGTH	524288
 
-dma_addr_t	axidma_handle;
-volatile unsigned int	*axidma_addr;
-
-
 static irqreturn_t dma_mm2s_irq(int irq,void *dev_id){
     printk("\nPs write data to fifo is over! irq=%d\n",irq);
-    iowrite32(0x00001000,mm2s_sr);
+    //iowrite32(0x00001000,mm2s_sr);
     return IRQ_HANDLED;
 }
 static irqreturn_t dma_s2mm_irq(int irq,void *dev_id){
-    iowrite32(0x00001000,s2mm_sr);
+    //iowrite32(0x00001000,s2mm_sr);
     printk("\nps read data from fifo is over! irq=%d\n",irq);
     return IRQ_HANDLED;
 }
@@ -88,6 +84,9 @@ static struct class *dma_class   = NULL;
 static int Major, major;
 struct cdev *kernel_cdev;
 struct device *kernel_device;
+
+dma_addr_t	axidma_handle;
+volatile unsigned int	*axidma_addr;
 
 static int dma_init(void){
 	/*
