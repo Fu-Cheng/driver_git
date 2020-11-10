@@ -179,7 +179,7 @@ static int dma_open(struct inode *inode,struct file *file){
 	//kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
-    	err = request_irq(IRQ_NUM, sample_isr, IRQF_SHARED, "dma_dev", irq_dev_id);
+    	err = request_irq(IRQ_NUM, sample_isr, IRQF_SHARED, "AAA", irq_dev_id);
   	if (err) {
 		printk("request_irq() failed (%d)\n", err);
 		return (err);
