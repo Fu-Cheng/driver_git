@@ -122,7 +122,7 @@ static int dma_init(void){
 	major=register_chrdev(0,"dma_dev",&dma_fops);
     	dma_class= class_create(THIS_MODULE,"dma_dev");
     	device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
-    	printk("major dev number= %d",major);
+    	printk(KERN_ALERT "major dev number= %d",major);
 	
     	//mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
     	//mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
