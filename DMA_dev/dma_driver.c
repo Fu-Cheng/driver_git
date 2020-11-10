@@ -163,14 +163,9 @@ static void dma_exit(void)
 
 }
 
-const int IRQ_NUM = 49;
-void *irq_dev_id = (void *)&IRQ_NUM;
-irqreturn_t sample_isr(int irq, void *dev_instance) {
-	if (printk_ratelimit()) {
-		printk("%s: irq %d dev_instance %p\n", __func__, irq, dev_instance);
-	}
-	return IRQ_NONE;
-}
+const int IRQ_NUM1 	=61;
+const int IRQ_NUM2	=62;
+//void *irq_dev_id = (void *)&IRQ_NUM;
 
 static int dma_open(struct inode *inode,struct file *file){
 	int err;
@@ -179,16 +174,16 @@ static int dma_open(struct inode *inode,struct file *file){
 	//kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
-    	err = request_irq(IRQ_NUM, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM);
+    	err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_TRIGGER_MASK, "dma_dev", &IRQ_NUM1);
     	printk("err=%d\n",err);
-    	err = request_irq(48, dma_s2mm_irq, IRQF_TRIGGER_MASK, "dma_dev", NULL);
+    	err = request_irq(IRQ_NUM2, dma_s2mm_irq, IRQF_TRIGGER_MASK, "dma_dev", &IRQ_NUM2);
     	printk("err=%d\n",err);
     	return 0;
 }
 
 static int dma_close(struct inode *inode, struct file *file){
-    	free_irq(dma_mm2s_irq, NULL);
-    	free_irq(dma_s2mm_irq, NULL);
+    	free_irq(dma_mm2s_irq, &IRQ_NUM1);
+    	free_irq(dma_s2mm_irq, &IRQ_NUM2);
 	dma_free_coherent(kernel_device, DMA_LENGTH, axidma_addr, axidma_handle);
 	printk("DMA close\n");
 }

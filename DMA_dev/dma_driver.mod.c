@@ -25,7 +25,6 @@ MODULE_INFO(retpoline, "Y");
 static const struct modversion_info ____versions[]
 __used __section(__versions) = {
 	{ 0x728616e3, "module_layout" },
-	{ 0x6128b5fc, "__printk_ratelimit" },
 	{ 0xedc03953, "iounmap" },
 	{ 0x9045fab1, "class_destroy" },
 	{ 0x7dcea277, "device_destroy" },
