@@ -198,11 +198,13 @@ static int dma_write(struct file *file,const char __user *buf, size_t count,loff
 		return 0;
     	}
     	memcpy(axidma_addr,buf,count);
-
+	printk("11111\n");
     	iowrite32(0x00001001,mm2s_cr);
+    	printk("22222\n");
     	iowrite32(axidma_handle,mm2s_sa);
+    	printk("33333\n");
     	iowrite32(count,mm2s_len);
-
+    	printk("44444\n");
     	mm2s_status = ioread32(mm2s_sr);
     	while((mm2s_status&(1<<1))==0)
     	{
