@@ -163,8 +163,8 @@ static void dma_exit(void)
 
 }
 
-const int IRQ_NUM1 	=49;
-const int IRQ_NUM2	=48;
+const int IRQ_NUM1 	=48;
+const int IRQ_NUM2	=49;
 //const int IRQ_NUM1 	=60;
 //const int IRQ_NUM2	=61;
 //void *irq_dev_id = (void *)&IRQ_NUM;
