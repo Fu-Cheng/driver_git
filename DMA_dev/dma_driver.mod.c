@@ -37,9 +37,10 @@ __used __section(__versions) = {
 	{ 0xafdf3d00, "dma_alloc_attrs" },
 	{ 0xfa37b305, "dma_free_attrs" },
 	{ 0xc1514a3b, "free_irq" },
-	{ 0x822137e2, "arm_heavy_mb" },
+	{ 0x9d669763, "memcpy" },
 	{ 0xefd6cf06, "__aeabi_unwind_cpp_pr0" },
 	{ 0xc5850110, "printk" },
+	{ 0x822137e2, "arm_heavy_mb" },
 };
 
 MODULE_INFO(depends, "");
