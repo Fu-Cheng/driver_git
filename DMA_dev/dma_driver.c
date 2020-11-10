@@ -57,12 +57,12 @@ volatile unsigned int  	*s2mm_len;
 static irqreturn_t dma_mm2s_irq(int irq, void *dev_id){
     printk("\nPs write data to fifo is over! irq=%d\n",irq);
     //iowrite32(0x00001000,mm2s_sr);
-    return 0;
+    return IRQ_HANDLED;
 }
 static irqreturn_t dma_s2mm_irq(int irq, void *dev_id){
     //iowrite32(0x00001000,s2mm_sr);
     printk("\nps read data from fifo is over! irq=%d\n",irq);
-    return 0;
+    return IRQ_HANDLED;
 }
 
 static int dma_init(void);
@@ -170,7 +170,7 @@ static int dma_open(struct inode *inode,struct file *file){
 	//kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
-    	err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev", NULL);
+    	err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_HIGH, "dma_dev", NULL);
     	printk("err=%d\n",err);
     	err = request_irq(62, dma_s2mm_irq, IRQF_TRIGGER_RISING, "dma_dev", NULL);
     	printk("err=%d\n",err);
