@@ -163,8 +163,8 @@ static void dma_exit(void)
 
 }
 
-const int IRQ_NUM1 	=61;
-const int IRQ_NUM2	=62;
+const int IRQ_NUM1 	=49;
+const int IRQ_NUM2	=48;
 //void *irq_dev_id = (void *)&IRQ_NUM;
 
 static int dma_open(struct inode *inode,struct file *file){
