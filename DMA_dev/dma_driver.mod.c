@@ -28,7 +28,6 @@ __used __section(__versions) = {
 	{ 0x9045fab1, "class_destroy" },
 	{ 0x7dcea277, "device_destroy" },
 	{ 0x6091b333, "unregister_chrdev_region" },
-	{ 0xe6ea4192, "cdev_del" },
 	{ 0x32b91a6b, "device_create" },
 	{ 0xb265f046, "__class_create" },
 	{ 0x6a85cde6, "__register_chrdev" },
