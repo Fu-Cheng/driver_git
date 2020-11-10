@@ -10,9 +10,16 @@
 #include <asm/exception.h>
 #include <asm/mach/irq.h>
 
-void int068_interrupt(int irq, void *dev_id, struct pt_regs *regs)
+irqreturn_t int068_interrupt(int irq, void *dev_id)
 {
-    printk("Interrupt should be handled there\n");
+    	printk("Interrupt should be handled there\n");
+	return IRQ_HANDLED;
+}
+
+static irqreturn_t dma_mm2s_irq(int irq, void *dev_id){
+    printk("\nPs write data to fifo is over! irq=%d\n",irq);
+    //iowrite32(0x00001000,mm2s_sr);
+    return IRQ_HANDLED;
 }
 
 static int __init clcdint_init(void)
@@ -22,7 +29,7 @@ static int __init clcdint_init(void)
     int ret;
 
     irq=68;
-    irqflags=IRQF_SHARED | IRQF_NO_SUSPEND;
+    irqflags=IRQF_NO_SUSPEND;
 
     ret = request_irq(irq, int068_interrupt,
             irqflags, "clcdint-int068", NULL);
