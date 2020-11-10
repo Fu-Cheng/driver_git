@@ -29,6 +29,7 @@ __used __section(__versions) = {
 	{ 0x92d5838e, "request_threaded_irq" },
 	{ 0xefd6cf06, "__aeabi_unwind_cpp_pr0" },
 	{ 0xc5850110, "printk" },
+	{ 0x6128b5fc, "__printk_ratelimit" },
 };
 
 MODULE_INFO(depends, "");
