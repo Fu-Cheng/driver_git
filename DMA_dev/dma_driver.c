@@ -52,13 +52,11 @@ volatile unsigned int  	*s2mm_da;
 volatile unsigned int  	*s2mm_len;
 #define S2MM_LENGTH	0x00000058
 
-#define DMA_LENGTH	16
+#define DMA_LENGTH	524288
 
 dma_addr_t	axidma_handle;
 volatile unsigned int	*axidma_addr;
 
-//u32 axidma_handle;
-//u32 *axidma_addr;
 
 static irqreturn_t dma_mm2s_irq(int irq,void *dev_id){
     printk("\nPs write data to fifo is over! irq=%d\n",irq);
@@ -71,8 +69,6 @@ static irqreturn_t dma_s2mm_irq(int irq,void *dev_id){
     return IRQ_HANDLED;
 }
 
-
-
 static int dma_init(void);
 static void dma_exit(void);
 
@@ -80,19 +76,20 @@ static int dma_open(struct inode *inode, struct file *file);
 static int dma_close(struct inode *inode, struct file *file);
 static int dma_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos);
 static int dma_read(struct file *file, char __user *buf, size_t size, loff_t *ppos);
+
 static struct file_operations dma_fops={
 	open:		dma_open,
 	release:	dma_close,
 	read:  		dma_read,
 	write: 		dma_write
 };
+
 static struct class *dma_class   = NULL;
 static int Major, major;
 struct cdev *kernel_cdev;
 struct device *kernel_device;
 
 static int dma_init(void){
-    	//major=register_chrdev(0,"dma_dev",&dma_lops);
 	/*
 	int ret;
 	dev_t dev_no, dev;
@@ -124,15 +121,15 @@ static int dma_init(void){
     	kernel_device=device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
     	printk(KERN_ALERT "major dev number= %d",major);
 	
-    	//mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
-    	//mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
-    	//mm2s_sa  =  ioremap(DMA_MM2S_ADDR+MM2S_SA,    4);
-    	//mm2s_len =  ioremap(DMA_MM2S_ADDR+MM2S_LENGTH,4);
+    	mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
+    	mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
+    	mm2s_sa  =  ioremap(DMA_MM2S_ADDR+MM2S_SA,    4);
+    	mm2s_len =  ioremap(DMA_MM2S_ADDR+MM2S_LENGTH,4);
 
-    	//s2mm_cr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMACR, 4);
-    	//s2mm_sr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMASR, 4);
-    	//s2mm_da  =  ioremap(DMA_S2MM_ADDR+S2MM_DA,    4);
-    	//s2mm_len =  ioremap(DMA_S2MM_ADDR+S2MM_LENGTH,4);
+    	s2mm_cr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMACR, 4);
+    	s2mm_sr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMASR, 4);
+    	s2mm_da  =  ioremap(DMA_S2MM_ADDR+S2MM_DA,    4);
+    	s2mm_len =  ioremap(DMA_S2MM_ADDR+S2MM_LENGTH,4);
 
    	return 0;
 }
@@ -143,9 +140,7 @@ static void dma_exit(void)
 	//cdev_del(kernel_cdev);
 	//unregister_chrdev_region(Major, 1);
 	
-    
     	unregister_chrdev(major,"dma_dev");
-    
     	device_destroy(dma_class, MKDEV(major,0));
     	class_destroy(dma_class);
 
@@ -155,15 +150,15 @@ static void dma_exit(void)
 
     	//dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
 
-    	//iounmap(mm2s_cr);
-    	//iounmap(mm2s_sr);
-    	//iounmap(mm2s_sa);
-    	//iounmap(mm2s_len);
+    	iounmap(mm2s_cr);
+    	iounmap(mm2s_sr);
+    	iounmap(mm2s_sa);
+    	iounmap(mm2s_len);
 
-    	//iounmap(s2mm_cr);
-    	//iounmap(s2mm_sr);
-    	//iounmap(s2mm_da);
-    	//iounmap(s2mm_len);
+    	iounmap(s2mm_cr);
+    	iounmap(s2mm_sr);
+    	iounmap(s2mm_da);
+    	iounmap(s2mm_len);
 
 	printk(KERN_ALERT "clean up dma");
 
@@ -172,7 +167,6 @@ static void dma_exit(void)
 static int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
-
 	//static const u64 dmamask = DMA_BIT_MASK(32);
 	//kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
@@ -189,7 +183,7 @@ static int dma_close(struct inode *inode, struct file *file){
 	printk("DMA close\n");
     	//free_irq(dma_mm2s_irq, NULL);
     	//free_irq(dma_s2mm_irq, NULL);
-	//dma_free_coherent(kernel_device->devt, DMA_LENGTH, axidma_addr, axidma_handle);
+	dma_free_coherent(kernel_device, DMA_LENGTH, axidma_addr, axidma_handle);
 }
 
 static int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppos){
