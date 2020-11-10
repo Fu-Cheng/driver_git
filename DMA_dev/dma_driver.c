@@ -139,14 +139,31 @@ static int dma_init(void){
 
 static void dma_exit(void)
 {
-	unregister_chrdev(major,"dma_dev");
+
+	//cdev_del(kernel_cdev);
+	//unregister_chrdev_region(Major, 1);
+	
     
-    	device_destroy(dma_class,MKDEV(major,0));
+    	unregister_chrdev(major,"dma_dev");
+    
+    	device_destroy(dma_class, MKDEV(major,0));
     	class_destroy(dma_class);
 
+	
+    	//free_irq(dma_mm2s_irq, NULL);
+    	//free_irq(dma_s2mm_irq, NULL);
 
+    	//dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
 
-    	dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
+    	//iounmap(mm2s_cr);
+    	//iounmap(mm2s_sr);
+    	//iounmap(mm2s_sa);
+    	//iounmap(mm2s_len);
+
+    	//iounmap(s2mm_cr);
+    	//iounmap(s2mm_sr);
+    	//iounmap(s2mm_da);
+    	//iounmap(s2mm_len);
 
 	printk(KERN_ALERT "clean up dma");
 
@@ -157,8 +174,9 @@ static int dma_open(struct inode *inode,struct file *file){
     	printk("DMA open\n");
 	//dma_set_coherent_mask(kernel_cdev, DMA_BIT_MASK(64));
 	//phy_addr=ioremap(kernel_cdev->dev, 4);
-	//dma_set_mask (kernel_cdev->dev, 0xffffff);
-    	//axidma_addr = dma_alloc_coherent(&client->dev, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
+	//dma_set_mask (kernel_cdev->dev, 0xfffff);
+	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
+    	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
 	printk("AAAAAAA\n");
     	//err = request_irq(61, dma_mm2s_irq, IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
