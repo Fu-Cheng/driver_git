@@ -178,6 +178,13 @@ static int dma_open(struct inode *inode,struct file *file){
     	//printk("err=%d\n",err);
     	//err = request_irq(62,dma_s2mm_irq,IRQF_TRIGGER_RISING, "dma_dev",NULL);
     	//printk("err=%d\n",err);
+
+    	printk("DMA open\n");
+    	axidma_addr = dma_alloc_coherent(NULL,DMA_LENGTH,&axidma_handle,GFP_KERNEL);
+    	err = request_irq(61,dma_mm2s_irq,IRQF_TRIGGER_RISING,"dma_dev",NULL);
+    	printk("err=%d\n",err);
+    	err = request_irq(62,dma_s2mm_irq,IRQF_TRIGGER_RISING,"dma_dev",NULL);
+    	printk("err=%d\n",err);
     	return 0;
 }
 
