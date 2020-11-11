@@ -195,7 +195,7 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 	else{
 		int i=0;
 		while (i<count){
-			printk("%d\n", *(buf+i));
+			printk("%d\n", buf);
 			i++;
 		}
 	}
