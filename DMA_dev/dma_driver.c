@@ -196,8 +196,6 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 		printk("%d\n", buf);
 	}
     	memcpy(axidma_addr, &buf, count);
-	printk("axidma_addr=%d\n", axidma_addr);
-	printk("*axidma_addr=%d\n", *axidma_addr);
     	iowrite32(0x00001001, mm2s_cr);
     	iowrite32(axidma_handle, mm2s_sa);
     	iowrite32(count, mm2s_len);
@@ -219,7 +217,7 @@ int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
 		printk("the number of data is not enough!\n");
 		return 1;
     	}
-
+	/*
     	iowrite32(0x00001001,s2mm_cr);
     	iowrite32(axidma_handle,s2mm_da);
     	iowrite32(size,s2mm_len);
@@ -228,8 +226,9 @@ int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
         	s2mm_status=ioread32(s2mm_sr);
     	}
     	printk("s2mm_sr=0x%x\n",s2mm_status);
-    
+	*/
     	memcpy(&buf,axidma_addr,size);
+	printk("read buf=%d\n", buf);
     	printk("\ndma read is over!\n");
     	return 0;
 }
