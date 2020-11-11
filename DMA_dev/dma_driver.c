@@ -172,8 +172,8 @@ const int IRQ_NUM2	=49;
 static int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
-	//static const u64 dmamask = DMA_BIT_MASK(32);
-	//kernel_device->dma_mask=(u64 *)&dmamask;
+	static const u64 dmamask = DMA_BIT_MASK(32);
+	kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
     	//err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM1);
