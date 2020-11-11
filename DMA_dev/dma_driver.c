@@ -119,7 +119,6 @@ static int dma_init(void){
 	major=register_chrdev(0,"dma_dev",&dma_fops);
     	dma_class= class_create(THIS_MODULE,"dma_dev");
     	kernel_device=device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
-	//device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
     	printk(KERN_ALERT "major dev number= %d",major);
 	
     	mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
@@ -198,33 +197,45 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 	}
     	memcpy(axidma_addr, &buf, count);
     	iowrite32(0x00001001,mm2s_cr);
-    	printk("22222\n");
     	iowrite32(axidma_handle,mm2s_sa);
-    	printk("33333\n");
     	iowrite32(count,mm2s_len);
-    	printk("44444\n");
     	mm2s_status = ioread32(mm2s_sr);
-    	while((mm2s_status&(1<<1))==0)
-    	{
+    	while((mm2s_status & (1<<1))==0){
         	mm2s_status = ioread32(mm2s_sr);
     	}
-    	printk("mm2s_status =0x%x\n",mm2s_status);
+    	printk("mm2s_status =0x%x\n", mm2s_status);
     	printk("dma write is over!\n");
 	
     	return 0;
 }
 
 int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
-	unsigned int s2mm_status=0;
+    	unsigned int s2mm_status=0;
     	printk("dma read start!\n");
+    	if(size>DMA_LENGTH){
+		printk("the number of data is not enough!\n");
+		return 1;
+    	}
 
+    	iowrite32(0x00001001,s2mm_cr);
+    	iowrite32(axidma_handle,s2mm_da);
+    	iowrite32(size,s2mm_len);
+    
+    	s2mm_status=ioread32(s2mm_sr);
+    	while((s2mm_status & (1<<1))==0){
+        	s2mm_status=ioread32(s2mm_sr);
+    	}
+    	printk("s2mm_sr=0x%x\n",s2mm_status);
+    
+    	memcpy(&buf,axidma_addr,size);
+    	printk("\ndma read is over!\n");
     	return 0;
 }
 
 module_init(dma_init);
 module_exit(dma_exit);
 
-MODULE_AUTHOR("TEST@dma");
+MODULE_AUTHOR("Fu-Cheng@ITRI");
 MODULE_DESCRIPTION("dma driver");
 MODULE_ALIAS("dma linux driver");
 MODULE_LICENSE("GPL");
