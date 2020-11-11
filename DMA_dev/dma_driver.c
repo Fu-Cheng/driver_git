@@ -196,6 +196,8 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 		printk("%d\n", buf);
 	}
     	memcpy(axidma_addr, &buf, count);
+	printk("axidma_addr=%d\n", axidma_addr);
+	printk("*axidma_addr=%d\n", *axidma_addr);
     	iowrite32(0x00001001, mm2s_cr);
     	iowrite32(axidma_handle, mm2s_sa);
     	iowrite32(count, mm2s_len);
