@@ -145,11 +145,6 @@ static void dma_exit(void)
     	device_destroy(dma_class, MKDEV(major,0));
     	class_destroy(dma_class);
 
-	
-    	//free_irq(dma_mm2s_irq, NULL);
-    	//free_irq(dma_s2mm_irq, NULL);
-
-    	//dma_free_coherent(NULL,DMA_LENGTH,axidma_addr,axidma_handle);
 
     	iounmap(mm2s_cr);
     	iounmap(mm2s_sr);
@@ -178,21 +173,20 @@ int dma_open(struct inode *inode,struct file *file){
 	kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
-    	//err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM1);
-    	//printk("err=%d\n",err);
-    	//err = request_irq(IRQ_NUM2, dma_s2mm_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM2);
-    	//printk("err=%d\n",err);
+    	err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM1);
+    	printk("err=%d\n",err);
+    	err = request_irq(IRQ_NUM2, dma_s2mm_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM2);
+    	printk("err=%d\n",err);
     	return 0;
 }
 
 int dma_close(struct inode *inode, struct file *file){
-    	//free_irq(IRQ_NUM1, &IRQ_NUM1);
-    	//free_irq(IRQ_NUM2, &IRQ_NUM2);
+    	free_irq(IRQ_NUM1, &IRQ_NUM1);
+    	free_irq(IRQ_NUM2, &IRQ_NUM2);
 	dma_free_coherent(kernel_device, DMA_LENGTH, axidma_addr, axidma_handle);
 	printk("DMA close\n");
 }
 int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppos){
-	char data[count];
     	unsigned int mm2s_status = 0;
     	printk("dma write start !\n");
     	if(count>DMA_LENGTH){
@@ -203,8 +197,6 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 		printk("the count is %d\n", count);
 	}
     	memcpy(axidma_addr, &buf, count);
-	printk("11111\n");
-	/*
     	iowrite32(0x00001001,mm2s_cr);
     	printk("22222\n");
     	iowrite32(axidma_handle,mm2s_sa);
@@ -218,7 +210,7 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
     	}
     	printk("mm2s_status =0x%x\n",mm2s_status);
     	printk("dma write is over!\n");
-	*/
+	
     	return 0;
 }
 
