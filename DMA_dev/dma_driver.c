@@ -192,13 +192,7 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 		printk("the number of data is too large!\n");
 		return 0;
     	}
-	else{
-		int i=0;
-		while (i<count){
-			printk("%d\n", buf[i]);
-			i++;
-		}
-	}
+
     	memcpy(axidma_addr, &buf, count);
     	iowrite32(0x00001001, mm2s_cr);
     	iowrite32(axidma_handle, mm2s_sa);
