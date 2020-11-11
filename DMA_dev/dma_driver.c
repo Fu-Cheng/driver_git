@@ -193,11 +193,7 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 		return 0;
     	}
 	else{
-		int i=0;
-		while (i<count){
-			printk("%d\n", buf);
-			i++;
-		}
+		printk("%d\n", buf);
 	}
     	memcpy(axidma_addr, &buf, count);
     	iowrite32(0x00001001, mm2s_cr);

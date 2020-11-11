@@ -25,6 +25,7 @@ int main(int argc , char ** argv){
     	for(int i=0;i<1000;i++){
         	writearray[i]=i+1;
     	}
+	printf(">>>>>>>>>>>>>>>%d<<<<<<<<<<<<<<<<<<<<", writearray);
 	write(fd, writearray, 1000*4);
 	if(read(fd, readarray, 1000*4)==0){
 		for(int i=0;i<1000;i++){
