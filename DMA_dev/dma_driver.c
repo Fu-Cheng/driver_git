@@ -89,7 +89,7 @@ dma_addr_t	axidma_handle;
 volatile unsigned int	*axidma_addr;
 
 static int dma_init(void){
-	
+	/*
 	int ret;
 	dev_t dev_no, dev;
 	ret=alloc_chrdev_region(&dev_no, 0, 1, "dma_dev");
@@ -112,13 +112,14 @@ static int dma_init(void){
 	
 		
     	dma_class=class_create(THIS_MODULE,"dma_dev");
-    	//kernel_device=device_create(dma_class, NULL, MKDEV(Major,0), NULL, "dma_dev");
-	device_create(dma_class, NULL, MKDEV(Major,0), NULL, "dma_dev");
+    	dev=device_create(dma_class, NULL, MKDEV(Major,0), NULL, "dma_dev");
+	*/
 
-	//major=register_chrdev(0,"dma_dev",&dma_fops);
-    	//dma_class= class_create(THIS_MODULE,"dma_dev");
+	major=register_chrdev(0,"dma_dev",&dma_fops);
+    	dma_class= class_create(THIS_MODULE,"dma_dev");
     	//kernel_device=device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
-    	//printk(KERN_ALERT "major dev number= %d",major);
+	device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
+    	printk(KERN_ALERT "major dev number= %d",major);
 	
     	mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
     	mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
@@ -136,10 +137,10 @@ static int dma_init(void){
 static void dma_exit(void)
 {
 
-	cdev_del(kernel_cdev);
-	unregister_chrdev_region(Major, 1);
+	//cdev_del(kernel_cdev);
+	//unregister_chrdev_region(Major, 1);
 	
-    	//unregister_chrdev(major,"dma_dev");
+    	unregister_chrdev(major,"dma_dev");
     	device_destroy(dma_class, MKDEV(major,0));
     	class_destroy(dma_class);
 
@@ -172,10 +173,9 @@ const int IRQ_NUM2	=49;
 static int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
-	//static const u64 dmamask = DMA_BIT_MASK(32);
-	//kernel_device->dma_mask=(u64 *)&dmamask;
+	static const u64 dmamask = DMA_BIT_MASK(32);
+	kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
-	//dma_set_mask(kernel_device, DMA_BIT_MASK(32));
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
     	//err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM1);
     	//printk("err=%d\n",err);
