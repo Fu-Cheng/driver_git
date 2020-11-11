@@ -89,7 +89,7 @@ dma_addr_t	axidma_handle;
 volatile unsigned int	*axidma_addr;
 
 static int dma_init(void){
-	/*
+	
 	int ret;
 	dev_t dev_no, dev;
 	ret=alloc_chrdev_region(&dev_no, 0, 1, "dma_dev");
@@ -112,13 +112,13 @@ static int dma_init(void){
 	
 		
     	dma_class=class_create(THIS_MODULE,"dma_dev");
-    	dev=device_create(dma_class, NULL, MKDEV(Major,0), NULL, "dma_dev");
-	*/
+    	kernel_device=device_create(dma_class, NULL, MKDEV(Major,0), NULL, "dma_dev");
+	
 
-	major=register_chrdev(0,"dma_dev",&dma_fops);
-    	dma_class= class_create(THIS_MODULE,"dma_dev");
-    	kernel_device=device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
-    	printk(KERN_ALERT "major dev number= %d",major);
+	//major=register_chrdev(0,"dma_dev",&dma_fops);
+    	//dma_class= class_create(THIS_MODULE,"dma_dev");
+    	//kernel_device=device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
+    	//printk(KERN_ALERT "major dev number= %d",major);
 	
     	mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
     	mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
@@ -200,7 +200,7 @@ static int dma_write(struct file *file,const char __user *buf, size_t count,loff
 	else{
 		printk("the count is %d\n", count);
 	}
-    	memcpy(axidma_addr,buf,count);
+    	memcpy(axidma_addr, buf, count);
 	printk("11111\n");
 	/*
     	iowrite32(0x00001001,mm2s_cr);
