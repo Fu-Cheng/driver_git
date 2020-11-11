@@ -68,21 +68,22 @@ static irqreturn_t dma_s2mm_irq(int irq, void *dev_id){
 static int dma_init(void);
 static void dma_exit(void);
 
-static int dma_open(struct inode *inode, struct file *file);
-static int dma_close(struct inode *inode, struct file *file);
-static int dma_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos);
-static int dma_read(struct file *file, char __user *buf, size_t size, loff_t *ppos);
+int dma_open(struct inode *inode, struct file *file);
+int dma_close(struct inode *inode, struct file *file);
+int dma_write(struct file *file, const char __user *buf, size_t count, loff_t *ppos);
+int dma_read(struct file *file, char __user *buf, size_t size, loff_t *ppos);
 
-static struct file_operations dma_fops={
+struct file_operations dma_fops={
 	open:		dma_open,
 	release:	dma_close,
 	read:  		dma_read,
 	write: 		dma_write
 };
 
-static struct class *dma_class   = NULL;
-static int Major, major;
-struct cdev *kernel_cdev;
+
+int major;
+struct class *dma_class   = NULL;
+//struct cdev *kernel_cdev;
 struct device *kernel_device;
 
 dma_addr_t	axidma_handle;
@@ -170,7 +171,7 @@ const int IRQ_NUM2	=49;
 //const int IRQ_NUM2	=61;
 //void *irq_dev_id = (void *)&IRQ_NUM;
 
-static int dma_open(struct inode *inode,struct file *file){
+int dma_open(struct inode *inode,struct file *file){
 	int err;
     	printk("DMA open\n");
 	static const u64 dmamask = DMA_BIT_MASK(32);
@@ -184,14 +185,14 @@ static int dma_open(struct inode *inode,struct file *file){
     	return 0;
 }
 
-static int dma_close(struct inode *inode, struct file *file){
+int dma_close(struct inode *inode, struct file *file){
     	//free_irq(IRQ_NUM1, &IRQ_NUM1);
     	//free_irq(IRQ_NUM2, &IRQ_NUM2);
 	dma_free_coherent(kernel_device, DMA_LENGTH, axidma_addr, axidma_handle);
 	printk("DMA close\n");
 }
-
-static int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppos){
+int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppos){
+	char data[count];
     	unsigned int mm2s_status = 0;
     	printk("dma write start !\n");
     	if(count>DMA_LENGTH){
@@ -201,7 +202,7 @@ static int dma_write(struct file *file,const char __user *buf, size_t count,loff
 	else{
 		printk("the count is %d\n", count);
 	}
-    	memcpy(axidma_addr, buf, count);
+    	memcpy(axidma_addr, &buf, count);
 	printk("11111\n");
 	/*
     	iowrite32(0x00001001,mm2s_cr);
@@ -221,7 +222,7 @@ static int dma_write(struct file *file,const char __user *buf, size_t count,loff
     	return 0;
 }
 
-static int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
+int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
 	unsigned int s2mm_status=0;
     	printk("dma read start!\n");
 
