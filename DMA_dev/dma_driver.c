@@ -202,7 +202,7 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
     	mm2s_status = ioread32(mm2s_sr);
     	while((mm2s_status & (1<<1))==0){
         	mm2s_status = ioread32(mm2s_sr);
-		printk("mm2s_status =0x%x\n", mm2s_status);	
+		printk("mm2s_status =%x\n", mm2s_status);	
     	}
     	printk("mm2s_status =0x%x\n", mm2s_status);
     	printk("dma write is over!\n");
