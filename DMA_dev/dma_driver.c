@@ -234,6 +234,7 @@ int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
     	printk("s2mm_sr=0x%x\n",s2mm_status);
     	*/
     	//memcpy(buf,axidma_addr,size);
+	copy_to_user(buf, axidma_addr, size);
 	printk("read buf: %x\n", buf);
     	printk("dma read is over!\n");
     	return 0;
