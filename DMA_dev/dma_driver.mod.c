@@ -31,11 +31,11 @@ __used __section(__versions) = {
 	{ 0x32b91a6b, "device_create" },
 	{ 0xb265f046, "__class_create" },
 	{ 0x6a85cde6, "__register_chrdev" },
+	{ 0x5f754e5a, "memset" },
 	{ 0xae353d77, "arm_copy_from_user" },
 	{ 0xafdf3d00, "dma_alloc_attrs" },
 	{ 0xfa37b305, "dma_free_attrs" },
 	{ 0xefd6cf06, "__aeabi_unwind_cpp_pr0" },
-	{ 0x9d669763, "memcpy" },
 	{ 0xc5850110, "printk" },
 };
 
