@@ -193,7 +193,7 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 		return 0;
     	}
 	else{
-		printk("%d\n", buf);
+		printk("write buf: %d\n", buf);
 	}
     	memcpy(axidma_addr, &buf, count);
 	/*
@@ -230,6 +230,7 @@ int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
     	printk("s2mm_sr=0x%x\n",s2mm_status);
     	*/
     	memcpy(&buf,axidma_addr,size);
+	printk("read buf: %d\n", buf);
     	printk("\ndma read is over!\n");
     	return 0;
 }
