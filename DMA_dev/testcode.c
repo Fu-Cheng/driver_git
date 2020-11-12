@@ -29,8 +29,8 @@ int main(int argc , char ** argv){
         	writearray[i]=i+1;
     	}
 	*/
-	write(fd, write_element, 4);
-	if(read(fd, read_element, 4)==0){
+	write(fd, &write_element, 4);
+	if(read(fd, &read_element, 4)==0){
 		printf("read: %d", read_element);
 		/*
 		for(int i=0;i<1000;i++){
