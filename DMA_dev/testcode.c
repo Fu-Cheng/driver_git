@@ -10,8 +10,10 @@ void delay(void)
     for(i=0;i<20000;i++)
         for(j=0;j<10000;j++);
 }
-unsigned int writearray[1000];
-unsigned int readarray[1000];
+//unsigned int writearray[1000];
+//unsigned int readarray[1000];
+unsigned int write_element=10;
+unsigned int read_element=0;
 int main(int argc , char ** argv){
 	int fd;
     	fd = open("/dev/dma_dev",O_RDWR);
@@ -22,16 +24,20 @@ int main(int argc , char ** argv){
     	else
 		printf("open file sucuss\n");
     	delay();
+	/*
     	for(int i=0;i<1000;i++){
         	writearray[i]=i+1;
     	}
-	printf(">>>>>>>>>>>>>>>%d<<<<<<<<<<<<<<<<<<<<", writearray);
-	write(fd, writearray, 1000*4);
-	if(read(fd, readarray, 1000*4)==0){
+	*/
+	write(fd, write_element, 4);
+	if(read(fd, read_element, 4)==0){
+		printf("read: %d", read_element);
+		/*
 		for(int i=0;i<1000;i++){
             		printf(" %d",readarray[i]);
             		readarray[i]=readarray[i]*2;
 		}
+		*/
 		printf("\n=====================================\n");
         	printf("======================================\n");
 	}
