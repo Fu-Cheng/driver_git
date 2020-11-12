@@ -120,7 +120,7 @@ static int dma_init(void){
     	dma_class= class_create(THIS_MODULE,"dma_dev");
     	kernel_device=device_create(dma_class,NULL,MKDEV(major,0),NULL,"dma_dev");
     	printk(KERN_ALERT "major dev number= %d",major);
-	
+	/*
     	mm2s_cr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMACR, 4);
     	mm2s_sr  =  ioremap(DMA_MM2S_ADDR+MM2S_DMASR, 4);
     	mm2s_sa  =  ioremap(DMA_MM2S_ADDR+MM2S_SA,    4);
@@ -130,7 +130,7 @@ static int dma_init(void){
     	s2mm_sr  =  ioremap(DMA_S2MM_ADDR+S2MM_DMASR, 4);
     	s2mm_da  =  ioremap(DMA_S2MM_ADDR+S2MM_DA,    4);
     	s2mm_len =  ioremap(DMA_S2MM_ADDR+S2MM_LENGTH,4);
-
+	*/
    	return 0;
 }
 
@@ -144,7 +144,7 @@ static void dma_exit(void)
     	device_destroy(dma_class, MKDEV(major,0));
     	class_destroy(dma_class);
 
-
+	/*
     	iounmap(mm2s_cr);
     	iounmap(mm2s_sr);
     	iounmap(mm2s_sa);
@@ -154,7 +154,7 @@ static void dma_exit(void)
     	iounmap(s2mm_sr);
     	iounmap(s2mm_da);
     	iounmap(s2mm_len);
-
+	*/
 	printk(KERN_ALERT "clean up dma");
 
 }
@@ -172,16 +172,16 @@ int dma_open(struct inode *inode,struct file *file){
 	kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
-    	err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM1);
-    	printk("err=%d\n",err);
-    	err = request_irq(IRQ_NUM2, dma_s2mm_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM2);
-    	printk("err=%d\n",err);
+    	//err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM1);
+    	//printk("err=%d\n",err);
+    	//err = request_irq(IRQ_NUM2, dma_s2mm_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM2);
+    	//printk("err=%d\n",err);
     	return 0;
 }
 
 int dma_close(struct inode *inode, struct file *file){
-    	free_irq(IRQ_NUM1, &IRQ_NUM1);
-    	free_irq(IRQ_NUM2, &IRQ_NUM2);
+    	//free_irq(IRQ_NUM1, &IRQ_NUM1);
+    	//free_irq(IRQ_NUM2, &IRQ_NUM2);
 	dma_free_coherent(kernel_device, DMA_LENGTH, axidma_addr, axidma_handle);
 	printk("DMA close\n");
 }
@@ -196,6 +196,7 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 		printk("%d\n", buf);
 	}
     	memcpy(axidma_addr, &buf, count);
+	/*
     	iowrite32(0x00001001, mm2s_cr);
     	iowrite32(axidma_handle, mm2s_sa);
     	iowrite32(count, mm2s_len);
@@ -205,6 +206,7 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 		printk("mm2s_status =%x\n", mm2s_status);	
     	}
     	printk("mm2s_status =0x%x\n", mm2s_status);
+	*/
     	printk("dma write is over!\n");
 	
     	return 0;
@@ -226,9 +228,8 @@ int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
         	s2mm_status=ioread32(s2mm_sr);
     	}
     	printk("s2mm_sr=0x%x\n",s2mm_status);
-	*/
+    	*/
     	memcpy(&buf,axidma_addr,size);
-	printk("read buf=%d\n", buf);
     	printk("\ndma read is over!\n");
     	return 0;
 }
