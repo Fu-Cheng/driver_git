@@ -193,11 +193,13 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
 		return 0;
     	}
 	printk("write buf addr: %x\n", buf);
-	printk("write buf value: %d\n", *buf);
+	//printk("write buf value: %d\n", *buf);
 
 	
     	//memcpy(axidma_addr, buf, count);
-	copy_from_user(axidma_addr, buf, count);
+	char *kernel_buf;
+	copy_from_user(kernel_buf, buf, count);
+	printk("====");
 	/*
     	iowrite32(0x00001001, mm2s_cr);
     	iowrite32(axidma_handle, mm2s_sa);
