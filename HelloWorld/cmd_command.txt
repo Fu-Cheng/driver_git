@@ -1,4 +1,0 @@
-sudo insmod hello.ko
-dmesg
-sudo rmmod hello
-dmesg

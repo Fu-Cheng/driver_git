@@ -55,13 +55,13 @@ volatile unsigned int  	*s2mm_len;
 #define DMA_LENGTH	524288
 
 static irqreturn_t dma_mm2s_irq(int irq, void *dev_id){
-    printk("\nPs write data to fifo is over! irq=%d\n",irq);
+    printk(KERN_ALERT "Ps write data to fifo is over! irq=%d\n",irq);
     iowrite32(0x00001000,mm2s_sr);
     return IRQ_HANDLED;
 }
 static irqreturn_t dma_s2mm_irq(int irq, void *dev_id){
     iowrite32(0x00001000,s2mm_sr);
-    printk("\nps read data from fifo is over! irq=%d\n",irq);
+    printk(KERN_ALERT "ps read data from fifo is over! irq=%d\n",irq);
     return IRQ_HANDLED;
 }
 
@@ -165,15 +165,15 @@ const int IRQ_NUM2	=48;
 
 int dma_open(struct inode *inode,struct file *file){
 	int err;
-    	printk("DMA open\n");
+    	printk(KERN_ALERT "DMA open\n");
 	static const u64 dmamask = DMA_BIT_MASK(32);
 	kernel_device->dma_mask=(u64 *)&dmamask;
 	kernel_device->coherent_dma_mask=DMA_BIT_MASK(32);
     	axidma_addr = dma_alloc_coherent(kernel_device, DMA_LENGTH, &axidma_handle, GFP_KERNEL);
     	err = request_irq(IRQ_NUM1, dma_mm2s_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM1);
-    	printk("err=%d\n",err);
+    	printk(KERN_ALERT "err=%d\n",err);
     	err = request_irq(IRQ_NUM2, dma_s2mm_irq, IRQF_SHARED, "dma_dev", &IRQ_NUM2);
-    	printk("err=%d\n",err);
+    	printk(KERN_ALERT "err=%d\n",err);
     	return 0;
 }
 
@@ -185,12 +185,12 @@ int dma_close(struct inode *inode, struct file *file){
 }
 int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppos){
     	unsigned int mm2s_status = 0;
-    	printk("dma write start !\n");
+    	printk(KERN_ALERT "dma write start !\n");
     	if(count>DMA_LENGTH){
 		printk("the number of data is too large!\n");
 		return 0;
     	}
-	printk("write buf addr: %x\n", buf);
+	printk(KERN_ALERT "write buf addr: %x\n", buf);
 	copy_from_user(axidma_addr, buf, count);
 	
     	iowrite32(0x00001001, mm2s_cr);
@@ -201,16 +201,16 @@ int dma_write(struct file *file,const char __user *buf, size_t count,loff_t *ppo
         	mm2s_status = ioread32(mm2s_sr);
 		printk("mm2s_status =%x\n", mm2s_status);	
     	}
-    	printk("mm2s_status =0x%x\n", mm2s_status);
+    	printk(KERN_ALERT "mm2s_status =0x%x\n", mm2s_status);
 	
-    	printk("dma write is over!\n");
+    	printk(KERN_ALERT "dma write is over!\n");
 	
     	return 0;
 }
 
 int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
     	unsigned int s2mm_status=0;
-    	printk("dma read start!\n");
+    	printk(KERN_ALERT "dma read start!\n");
     	if(size>DMA_LENGTH){
 		printk("the number of data is not enough!\n");
 		return 1;
@@ -223,11 +223,11 @@ int dma_read(struct file *file,char __user *buf,size_t size,loff_t *ppos){
     	while((s2mm_status & (1<<1))==0){
         	s2mm_status=ioread32(s2mm_sr);
     	}
-    	printk("s2mm_sr=0x%x\n",s2mm_status);
+    	printk(KERN_ALERT "s2mm_sr=0x%x\n",s2mm_status);
     	
 	copy_to_user(buf, axidma_addr, size);
-	printk("read buf: %x\n", buf);
-    	printk("dma read is over!\n");
+	printk(KERN_ALERT "read buf: %x\n", buf);
+    	printk(KERN_ALERT "dma read is over!\n");
     	return 0;
 }
 
