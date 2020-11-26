@@ -997,7 +997,8 @@ MODULE_DEVICE_TABLE(of, adv7511_of_ids);
 static struct drm_i2c_encoder_driver adv7511_driver = {
 	.i2c_driver = {
 		.driver = {
-			.name = "adv7511",
+			//.name = "adv7511",
+			.name="fb0",
 			.of_match_table = adv7511_of_ids,
 		},
 		.id_table = adv7511_i2c_ids,
