@@ -979,7 +979,7 @@ static int adv7511_encoder_init(struct i2c_client *i2c, struct drm_device *dev,
 }
 
 static const struct i2c_device_id adv7511_i2c_ids[] = {
-	{ "fb0", 0 },
+	{ "adv7511", 0 },
 	{ "adv7511w", 0 },
 	{ "adv7513", 0 },
 	{ }
@@ -997,8 +997,7 @@ MODULE_DEVICE_TABLE(of, adv7511_of_ids);
 static struct drm_i2c_encoder_driver adv7511_driver = {
 	.i2c_driver = {
 		.driver = {
-			//.name = "adv7511",
-			.name="fb0",
+			.name = "adv7511",
 			.of_match_table = adv7511_of_ids,
 		},
 		.id_table = adv7511_i2c_ids,

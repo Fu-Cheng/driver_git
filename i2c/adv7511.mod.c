@@ -77,6 +77,6 @@ MODULE_ALIAS("of:N*T*Cadi,adv7511w");
 MODULE_ALIAS("of:N*T*Cadi,adv7511wC*");
 MODULE_ALIAS("of:N*T*Cadi,adv7513");
 MODULE_ALIAS("of:N*T*Cadi,adv7513C*");
-MODULE_ALIAS("i2c:fb0");
+MODULE_ALIAS("i2c:adv7511");
 MODULE_ALIAS("i2c:adv7511w");
 MODULE_ALIAS("i2c:adv7513");
