@@ -21,9 +21,6 @@ void delay(void)
 }
 unsigned int write_array[1000];
 unsigned int read_array[1000];
-//unsigned int write_element=10;
-//unsigned int read_element=0;
-
 
 int main(int argc , char ** argv){
 	
@@ -42,7 +39,7 @@ int main(int argc , char ** argv){
 	aaa="wegt";
 	int b=0;
 	for (int i=0; i<4; i++)
-		b+=((int)aaa[i]<<(8*i));
+		b=(b<<8)+(int)aaa[i];
 
 	write_array[0]=b;
     	for(int i=1;i<1000;i++){
