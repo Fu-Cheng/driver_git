@@ -20,7 +20,7 @@ void delay(void)
         for(j=0;j<10000;j++);
 }
 
-void to_cim(unsigned int&)
+void to_cim(unsigned int[]);
 int str2ascii(string input);
 
 int main(int argc , char ** argv){
@@ -38,6 +38,11 @@ int main(int argc , char ** argv){
 	
 	to_cim(write_array);
 
+	write_array[0]=str2ascii("sfsz");
+	write_array[1]=32;
+	for(int i=2;i<69;i++)
+		write_array[i]=i;
+	to_cim(write_array);
 	/*
 	string aaa;
 	aaa="wegt";
@@ -54,7 +59,7 @@ int main(int argc , char ** argv){
     	return 0;
 }
 
-void to_cim(unsigned int& write_array){
+void to_cim(unsigned int write_array[]){
 	unsigned int read_array[64];
 	int fd;
     	fd = open("/dev/dma_dev",O_RDWR);
@@ -64,7 +69,6 @@ void to_cim(unsigned int& write_array){
 	}
     	else
 		printf("open file sucuss\n");
-	
 	write(fd, write_array, 4*69);	
 	delay;
 	if(read(fd, read_array, 4*64)==0){
