@@ -54,11 +54,12 @@ int main(int argc , char ** argv){
 		in_cim[i]=i;
 
 	write(fd, params, 4*6);
-	//delay;
+	read(fd, read_array, 4*64);
+	delay;
 	write(fd, weight, 4*65);
-	//delay;
+	read(fd, read_array, 4*64);
+	delay;
 	write(fd, in_cim, 4*65);
-	//delay;
 	
 	if(read(fd, read_array, 4*64)==0){
 		//printf("read: %d", read_element);
@@ -66,9 +67,8 @@ int main(int argc , char ** argv){
 		for(int i=0;i<64;i++)
             		printf("%x\n",read_array[i]);
 
-		
 		printf("\n=====================================\n");
-        	printf("======================================\n");
+
 	}
 
 	close(fd);
