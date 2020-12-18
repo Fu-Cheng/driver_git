@@ -64,8 +64,9 @@ void to_cim(unsigned int& write_array){
 	}
     	else
 		printf("open file sucuss\n");
-	delay;
 	
+	write(fd, write_array, 4*69);	
+	delay;
 	if(read(fd, read_array, 4*64)==0){
 		for(int i=0;i<64;i++)
             		printf("%x\n",read_array[i]);
