@@ -51,13 +51,13 @@ int main(int argc , char ** argv){
 	
 	in_cim[0]=str2ascii("inpt");
 	for(int i=1;i<65;i++)
-		input[i]=i;
+		in_cim[i]=i;
 
-	write(fd, params, 6*5);
+	write(fd, params, 4*6);
 	delay;
 	write(fd, weight, 4*65);
 	delay;
-	write(fd, input, 4*65);
+	write(fd, in_cim, 4*65);
 	delay;
 	
 	if(read(fd, read_array, 4*64)==0){
