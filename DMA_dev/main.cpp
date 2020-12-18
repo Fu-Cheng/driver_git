@@ -19,8 +19,10 @@ void delay(void)
     for(i=0;i<20000;i++)
         for(j=0;j<10000;j++);
 }
-unsigned int write_array[69];
-unsigned int read_array[1];
+unsigned int params[6];
+unsigned int weight[65];
+unsigned int in_cim[65];
+unsigned int read_array[64];
 
 int str2ascii(string input);
 
@@ -36,21 +38,32 @@ int main(int argc , char ** argv){
 		printf("open file sucuss\n");
 	
 
-	write_array[0]=str2ascii("wlsz");
-	write_array[1]=32;
-	write_array[2]=str2ascii("blsz");
-	write_array[3]=64;
-	write_array[4]=str2ascii("wegt");
-    	for(int i=1;i<69;i++){
-        	write_array[i]=i;
-    	}
+	params[0]=str2ascii("wlsz");
+	params[1]=32;
+	params[2]=str2ascii("blsz");
+	params[3]=32;
+	params[4]=str2ascii("sfsz");
+	params[5]=32;
 
-	write(fd, write_array, 4*69);
+	weight[0]=str2ascii("wegt");
+    	for(int i=1;i<65;i++)
+		weight[i]=i;
+	
+	in_cim[0]=str2ascii("inpt");
+	for(int i=1;i<65;i++)
+		input[i]=i;
+
+	write(fd, params, 6*5);
 	delay;
-	if(read(fd, read_array, 4*1)==0){
+	write(fd, weight, 4*65);
+	delay;
+	write(fd, input, 4*65);
+	delay;
+	
+	if(read(fd, read_array, 4*64)==0){
 		//printf("read: %d", read_element);
 		
-		for(int i=0;i<1;i++)
+		for(int i=0;i<64;i++)
             		printf(" %d",read_array[i]);
 
 		
@@ -65,7 +78,7 @@ int main(int argc , char ** argv){
 	aaa="wegt";
 	int b=0;
 	for (int i=0; i<4; i++)
-		b+=((int)aaa[i]<<(8*i));
+	b+=((int)aaa[i]<<(8*i));
 	
 	printf("%x\n",b);
 
