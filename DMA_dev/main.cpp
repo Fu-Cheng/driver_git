@@ -40,7 +40,8 @@ int main(int argc , char ** argv){
 
 	write_array[0]=str2ascii("sfsz");
 	write_array[1]=32;
-	for(int i=2;i<69;i++)
+	write_array[2]=str2ascii("inpt");
+	for(int i=3;i<69;i++)
 		write_array[i]=i;
 	to_cim(write_array);
 	/*
